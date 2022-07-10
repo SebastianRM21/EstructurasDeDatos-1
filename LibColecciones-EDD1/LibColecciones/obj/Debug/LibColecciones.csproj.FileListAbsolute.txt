@@ -1,0 +1,11 @@
+C:\Users\sebas\Source\Repos\LibColecciones-EDD1\LibColecciones-EDD1\LibColecciones\bin\Debug\LibColecciones.dll
+C:\Users\sebas\Source\Repos\LibColecciones-EDD1\LibColecciones-EDD1\LibColecciones\bin\Debug\LibColecciones.pdb
+C:\Users\sebas\Source\Repos\LibColecciones-EDD1\LibColecciones-EDD1\LibColecciones\obj\Debug\LibColecciones.csproj.AssemblyReference.cache
+C:\Users\sebas\Source\Repos\LibColecciones-EDD1\LibColecciones-EDD1\LibColecciones\obj\Debug\LibColecciones.csproj.CoreCompileInputs.cache
+C:\Users\sebas\Source\Repos\LibColecciones-EDD1\LibColecciones-EDD1\LibColecciones\obj\Debug\LibColecciones.dll
+C:\Users\sebas\Source\Repos\LibColecciones-EDD1\LibColecciones-EDD1\LibColecciones\obj\Debug\LibColecciones.pdb
+C:\Users\sebas\Downloads\LibColecciones-EDD1-v1\LibColecciones-EDD1\LibColecciones\bin\Debug\LibColecciones.dll
+C:\Users\sebas\Downloads\LibColecciones-EDD1-v1\LibColecciones-EDD1\LibColecciones\bin\Debug\LibColecciones.pdb
+C:\Users\sebas\Downloads\LibColecciones-EDD1-v1\LibColecciones-EDD1\LibColecciones\obj\Debug\LibColecciones.csproj.CoreCompileInputs.cache
+C:\Users\sebas\Downloads\LibColecciones-EDD1-v1\LibColecciones-EDD1\LibColecciones\obj\Debug\LibColecciones.dll
+C:\Users\sebas\Downloads\LibColecciones-EDD1-v1\LibColecciones-EDD1\LibColecciones\obj\Debug\LibColecciones.pdb
