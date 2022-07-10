@@ -1,9 +1,4 @@
-﻿using Servicios.Colecciones.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace Servicios.Colecciones.Nodos
 {
@@ -11,6 +6,21 @@ namespace Servicios.Colecciones.Nodos
     {
         #region Atributos Propios
         private clsNodoEnlazado<Tipo> atrSiguiente;
+        #endregion
+        #region Operaciones
+        #region Accesores
+        public clsNodoEnlazado<Tipo> darSiguiente()
+        {
+            return atrSiguiente;
+
+        }
+        #endregion
+        #region Mutadores
+        public void modificarSiguiente(clsNodoEnlazado<Tipo> prmSiguiente)
+        {
+            this.atrSiguiente = prmSiguiente;
+        }
+        #endregion
         #endregion
     }
 }

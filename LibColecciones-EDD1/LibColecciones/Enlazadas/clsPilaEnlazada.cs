@@ -16,11 +16,23 @@ namespace Servicios.Colecciones.Enlazadas
 
         private clsNodoEnlazado<Tipo> atrPrimero;
         private clsNodoEnlazado<Tipo> atrUltimo;
+        private int atrLongitud;
+
 
         #endregion
 
         #endregion
         #region Operaciones
+        #region Constructores
+        public clsPilaEnlazada()
+        {
+
+            this.atrLongitud = 0;
+
+
+        }
+
+        #endregion
         #region CRUD
         public bool apilar(Tipo prmItem)
         {
@@ -47,19 +59,62 @@ namespace Servicios.Colecciones.Enlazadas
 
         public Tipo[] darItems()
         {
-            throw new NotImplementedException();
+            Tipo[] varItems=null;
+            int varIndice = 0;
+            clsNodoEnlazado<Tipo> varNodo = this.darPrimero();
+            if (varNodo!=null)
+            {
+                while (varNodo!=null)
+                {
+                    varItems[varIndice] = this.atrPrimero.darItem();
+                    varIndice++;
+                    varNodo = this.atrPrimero.darSiguiente();
+                }
+                return varItems;
+            }
+            else
+            {
+                return varItems;
+            }
+
+            
         }
 
         public int darLongitud()
         {
-            throw new NotImplementedException();
+            return this.atrLongitud;
+        }
+
+        public clsNodoEnlazado<Tipo> darPrimero()
+        {
+            return this.atrPrimero;
+        }
+
+        public clsNodoEnlazado<Tipo> darUltimo()
+        {
+            return this.atrUltimo;
         }
 
         #endregion
         #region Mutadores
         public bool ponerItems(Tipo[] prmItems)
         {
-            throw new NotImplementedException();
+            if (prmItems.Length!=0)
+            {
+                { 
+
+
+                }
+
+
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+
         }
         #endregion
         #region QUERY

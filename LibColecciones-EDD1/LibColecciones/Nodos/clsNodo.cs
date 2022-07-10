@@ -1,9 +1,4 @@
-﻿using Servicios.Colecciones.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace Servicios.Colecciones.Nodos
 {
@@ -13,6 +8,22 @@ namespace Servicios.Colecciones.Nodos
         protected Tipo atrItem;
         #endregion
 
+        #region Operaciones
+        #region Accesores
+        public Tipo darItem()
+        {
+            return this.atrItem;
+        }
+        #endregion
+        #region Mutadores
+
+        public void modificarItem(Tipo prmItem)
+        {
+            this.atrItem = prmItem;
+        }
+
+        #endregion
+        #endregion
 
     }
 }
