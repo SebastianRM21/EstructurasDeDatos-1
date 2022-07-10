@@ -17,6 +17,7 @@ namespace Servicios.Colecciones.Enlazadas
         private clsNodoEnlazado<Tipo> atrPrimero;
         private clsNodoEnlazado<Tipo> atrUltimo;
         private int atrLongitud;
+        private Tipo[] atrItems;
 
 
         #endregion
@@ -59,22 +60,31 @@ namespace Servicios.Colecciones.Enlazadas
 
         public Tipo[] darItems()
         {
-            Tipo[] varItems=null;
-            int varIndice = 0;
             clsNodoEnlazado<Tipo> varNodo = this.darPrimero();
-            if (varNodo!=null)
+            if (varNodo != null)
             {
+                int varIndice = 0;
+                
                 while (varNodo!=null)
                 {
-                    varItems[varIndice] = this.atrPrimero.darItem();
                     varIndice++;
-                    varNodo = this.atrPrimero.darSiguiente();
+                    varNodo = varNodo.darSiguiente();
                 }
-                return varItems;
+
+                this.atrItems = new Tipo[varIndice];
+                varIndice = 0;
+                varNodo = this.darPrimero();
+                while (varNodo!=null)
+                {
+                    this.atrItems[varIndice] = varNodo.darItem();
+                    varIndice++;
+                    varNodo = varNodo.darSiguiente();
+                }
+                return this.atrItems;
             }
             else
             {
-                return varItems;
+                return this.atrItems;
             }
 
             
@@ -101,14 +111,22 @@ namespace Servicios.Colecciones.Enlazadas
         {
             if (prmItems.Length!=0)
             {
-                { 
-
-
+                clsNodoEnlazado<Tipo> nodo = new clsNodoEnlazado<Tipo>();
+                nodo.modificarItem(prmItems[0]);
+                this.atrPrimero = nodo;
+                this.atrLongitud++;
+                for (int indice=1;indice<prmItems.Length;indice++)
+                {
+                    clsNodoEnlazado<Tipo> siguiente = new clsNodoEnlazado<Tipo>();
+                    siguiente.modificarItem(prmItems[indice]);
+                    nodo.modificarSiguiente(siguiente);
+                    nodo = siguiente;
+                    this.atrLongitud++;
                 }
+                this.atrUltimo = nodo;
 
 
                 return true;
-
             }
             else
             {
