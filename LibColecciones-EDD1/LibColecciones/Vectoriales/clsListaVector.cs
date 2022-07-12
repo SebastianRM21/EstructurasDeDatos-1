@@ -1,9 +1,5 @@
 ﻿using Servicios.Colecciones.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Servicios.Colecciones.Vectoriales
 {
@@ -361,9 +357,9 @@ namespace Servicios.Colecciones.Vectoriales
                 }
                 else
                 {
-                    for (int i = this.atrLongitud; i > prmIndice; i--)
+                    for (int indice = this.atrLongitud; indice > prmIndice; indice--)
                     {
-                        this.atrItems[i] = this.atrItems[i - 1];
+                        this.atrItems[indice] = this.atrItems[indice - 1];
 
                     }
                     this.atrItems[prmIndice] = prmItem;
@@ -394,9 +390,9 @@ namespace Servicios.Colecciones.Vectoriales
                     else
                     {
 
-                        for (int i = this.atrLongitud; i > prmIndice; i--)
+                        for (int indice = this.atrLongitud; indice > prmIndice; indice--)
                         {
-                            this.atrItems[i] = this.atrItems[i - 1];
+                            this.atrItems[indice] = this.atrItems[indice - 1];
 
                         }
                         this.atrItems[prmIndice] = prmItem;
@@ -534,18 +530,33 @@ namespace Servicios.Colecciones.Vectoriales
         #region Reversar
         public bool reversar()
         {
-            if (this.atrLongitud!=0)
+            if (this.atrLongitud != 0)
+            {
+                Tipo[] varTempItems = new Tipo[this.atrCapacidad];
+                for (int indice = 0; indice < this.atrLongitud; indice++)
+                {
+                    varTempItems[indice] = this.atrItems[(this.atrLongitud - 1) - indice];
+                }
+
+                this.atrItems = varTempItems;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            /*if (this.atrLongitud!=0)
             {
                 Tipo[] varTempItems = new Tipo[this.atrLongitud];
                 int iterar = this.atrLongitud;
-                for (int i = 0; i < iterar; i++)
+                for (int indice = 0; indice < iterar; indice++)
                 {
-                    extraer(0,ref varTempItems[i]);
+                    extraer(0,ref varTempItems[indice]);
                 }
 
-                for (int i = varTempItems.Length - 1; i >= 0; i--)
+                for (int indice = varTempItems.Length - 1; indice >= 0; indice--)
                 {
-                    agregar(varTempItems[i]);
+                    agregar(varTempItems[indice]);
                 }
 
                 return true;
@@ -553,7 +564,7 @@ namespace Servicios.Colecciones.Vectoriales
             else
             {
                 return false;
-            }
+            }*/
         }
         #endregion
         #endregion

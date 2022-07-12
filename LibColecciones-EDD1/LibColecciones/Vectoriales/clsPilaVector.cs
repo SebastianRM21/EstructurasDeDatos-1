@@ -290,9 +290,9 @@ namespace Servicios.Colecciones.Vectoriales
             }
             else
             {
-                for (int i = this.atrLongitud; i > 0; i--)
+                for (int indice = this.atrLongitud; indice > 0; indice--)
                 {
-                    this.atrItems[i] = this.atrItems[i - 1];
+                    this.atrItems[indice] = this.atrItems[indice - 1];
 
                 }
                 this.atrItems[0] = prmItem;
@@ -310,9 +310,9 @@ namespace Servicios.Colecciones.Vectoriales
                 }
                 else
                 {
-                    for (int i= this.atrLongitud; i>0;i--)
+                    for (int indice= this.atrLongitud; indice>0;indice--)
                     {
-                        this.atrItems[i] = this.atrItems[i - 1];
+                        this.atrItems[indice] = this.atrItems[indice - 1];
                         
                     }
                     this.atrItems[0] = prmItem;
@@ -374,22 +374,36 @@ namespace Servicios.Colecciones.Vectoriales
 
         public bool reversar()
         {
-            
             if (this.atrLongitud!=0)
             {
+                Tipo[] varTempItems = new Tipo[this.atrCapacidad];
+                for (int indice=0;indice<this.atrLongitud;indice++)
+                {
+                    varTempItems[indice] = this.atrItems[(this.atrLongitud-1)-indice];
+                }
 
+                this.atrItems = varTempItems;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
+            /*
+            if (this.atrLongitud!=0)
+            {
                 Tipo[] varTempItems = new Tipo[this.atrLongitud];
                 int iterar = this.atrLongitud;
-                for (int i=0;i<iterar;i++)
+                for (int indice=0;indice<iterar;indice++)
                 {
-                    desapilar(ref varTempItems[i]);
+                    desapilar(ref varTempItems[indice]);
                     
                 }
                 
-                for (int i=0;i<varTempItems.Length;i++)
+                for (int indice=0;indice<varTempItems.Length;indice++)
                 {
-                    apilar(varTempItems[i]);
+                    apilar(varTempItems[indice]);
 
                 }
                 
@@ -398,7 +412,7 @@ namespace Servicios.Colecciones.Vectoriales
             else
             {
                 return false;
-            }
+            }*/
         }
 
 

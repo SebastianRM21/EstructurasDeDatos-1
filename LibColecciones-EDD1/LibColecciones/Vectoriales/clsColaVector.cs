@@ -1,9 +1,5 @@
 ﻿using Servicios.Colecciones.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Servicios.Colecciones.Vectoriales
 {
@@ -316,9 +312,9 @@ namespace Servicios.Colecciones.Vectoriales
             if (this.atrLongitud != 0)
             {
                 prmItem = this.atrItems[0];
-                for (int i = 0; i < this.atrLongitud - 1; i++)
+                for (int indice = 0; indice < this.atrLongitud - 1; indice++)
                 {
-                    this.atrItems[i] = this.atrItems[i + 1];
+                    this.atrItems[indice] = this.atrItems[indice + 1];
                 }
                 this.atrLongitud--;
 
@@ -350,23 +346,39 @@ namespace Servicios.Colecciones.Vectoriales
         {
             if (this.atrLongitud != 0)
             {
-                Tipo[] varTempItems = new Tipo[this.atrLongitud];
-                int iterar = this.atrLongitud;
-                for (int i = 0; i < iterar; i++)
+                Tipo[] varTempItems = new Tipo[this.atrCapacidad];
+                for (int indice = 0; indice < this.atrLongitud; indice++)
                 {
-                    desencolar(ref varTempItems[i]);
+                    varTempItems[indice] = this.atrItems[(this.atrLongitud - 1) - indice];
                 }
 
-                for (int i = varTempItems.Length-1; i >=0 ; i--)
-                {
-                    encolar(varTempItems[i]);
-                }
+                this.atrItems = varTempItems;
                 return true;
             }
             else
             {
                 return false;
             }
+            /*if (this.atrLongitud != 0)
+            {
+                Tipo[] varTempItems = new Tipo[this.atrLongitud];
+                int iterar = this.atrLongitud;
+                for (int indice = 0; indice < iterar; indice++)
+                {
+                    desencolar(ref varTempItems[indice]);
+                }
+
+                for (int indice = varTempItems.Length-1; indice >=0 ; indice--)
+                {
+                    encolar(varTempItems[indice]);
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }*/
+
         }
 
 
