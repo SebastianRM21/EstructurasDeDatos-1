@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Servicios.Colecciones.Vectoriales;
-using System.Collections.Generic;
 
 namespace uTestDemoColecciones
 {
