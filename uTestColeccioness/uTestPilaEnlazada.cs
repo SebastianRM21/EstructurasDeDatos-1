@@ -62,7 +62,21 @@ namespace Servicios.Colecciones
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
         }
-
+        [TestMethod]
+        public void uTestPonerItemsConLongitudEnBorde()
+        {
+            //cuidadoo
+            #region Configurar
+            testTAD = new clsPilaEnlazada<int>();
+            testItems = new int[int.MaxValue / 16];
+            #endregion
+            #region Probar y Comprobar
+            Assert.AreEqual(true, testTAD.ponerItems(testItems));
+            Assert.AreEqual(int.MaxValue / 16, testTAD.darLongitud());
+            Assert.AreEqual(int.MaxValue / 16, testTAD.darItems().Length);
+            CollectionAssert.AreEqual(testItems, testTAD.darItems());
+            #endregion
+        }
         #endregion
         #endregion
 

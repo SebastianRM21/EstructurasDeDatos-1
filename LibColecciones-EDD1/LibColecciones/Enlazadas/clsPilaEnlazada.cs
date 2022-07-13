@@ -1,10 +1,6 @@
 ﻿using Servicios.Colecciones.Interfaces;
 using Servicios.Colecciones.Nodos;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Servicios.Colecciones.Enlazadas
 {
@@ -57,22 +53,13 @@ namespace Servicios.Colecciones.Enlazadas
         }
         #endregion
         #region Accesores
-
+        //peligro, revisar
         public Tipo[] darItems()
         {
             clsNodoEnlazado<Tipo> varNodo = this.darPrimero();
             if (varNodo != null)
             {
                 int varIndice = 0;
-                
-                while (varNodo!=null)
-                {
-                    varIndice++;
-                    varNodo = varNodo.darSiguiente();
-                }
-
-                this.atrItems = new Tipo[varIndice];
-                varIndice = 0;
                 varNodo = this.darPrimero();
                 while (varNodo!=null)
                 {
@@ -86,8 +73,6 @@ namespace Servicios.Colecciones.Enlazadas
             {
                 return this.atrItems;
             }
-
-            
         }
 
         public int darLongitud()
@@ -107,6 +92,7 @@ namespace Servicios.Colecciones.Enlazadas
 
         #endregion
         #region Mutadores
+        //peligro, revisar
         public bool ponerItems(Tipo[] prmItems)
         {
             if (prmItems.Length!=0)
@@ -124,15 +110,13 @@ namespace Servicios.Colecciones.Enlazadas
                     this.atrLongitud++;
                 }
                 this.atrUltimo = nodo;
-
-
+                this.atrItems = prmItems;
                 return true;
             }
             else
             {
                 return false;
             }
-
         }
         #endregion
         #region QUERY

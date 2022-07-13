@@ -268,7 +268,6 @@ namespace Servicios.Colecciones.Vectoriales
         {
             validarCapacidad(this.atrCapacidad);
             ajustarFlexibilidad(true);
-           
 
             if (this.atrCapacidad == 0 || this.atrLongitud==this.atrCapacidad)
             {
@@ -280,9 +279,7 @@ namespace Servicios.Colecciones.Vectoriales
                 {
                     return false;
                 }
-
             }
-
             if (this.atrLongitud == 0)
             {
                 this.atrItems[0] = prmItem;
