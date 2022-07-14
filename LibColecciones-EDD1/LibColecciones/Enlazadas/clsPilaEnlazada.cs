@@ -23,7 +23,7 @@ namespace Servicios.Colecciones.Enlazadas
         #region Constructores
         public clsPilaEnlazada()
         {
-
+            
             this.atrLongitud = 0;
 
 
@@ -31,9 +31,27 @@ namespace Servicios.Colecciones.Enlazadas
 
         #endregion
         #region CRUD
+        //Revisaaaar
         public bool apilar(Tipo prmItem)
         {
-            throw new NotImplementedException();
+            clsNodoEnlazado<Tipo> varNodo = new clsNodoEnlazado<Tipo>();
+            varNodo.modificarItem(prmItem);
+            if (this.atrLongitud!=0)
+            {
+                this.atrPrimero = varNodo;
+                this.atrUltimo = varNodo;
+                
+            }
+            else
+            {
+                varNodo.modificarSiguiente(this.atrPrimero);
+                this.atrPrimero = varNodo;
+            }
+            this.atrLongitud++;
+
+            this.atrItems = new Tipo[this.atrLongitud];
+            return true;
+
         }
 
        
@@ -60,7 +78,7 @@ namespace Servicios.Colecciones.Enlazadas
             if (varNodo != null)
             {
                 int varIndice = 0;
-                varNodo = this.darPrimero();
+                
                 while (varNodo!=null)
                 {
                     this.atrItems[varIndice] = varNodo.darItem();
@@ -95,7 +113,7 @@ namespace Servicios.Colecciones.Enlazadas
         //peligro, revisar
         public bool ponerItems(Tipo[] prmItems)
         {
-            if (prmItems.Length!=0)
+            if (prmItems.Length!=0 && prmItems.Length<=(int.MaxValue/16))
             {
                 clsNodoEnlazado<Tipo> nodo = new clsNodoEnlazado<Tipo>();
                 nodo.modificarItem(prmItems[0]);
