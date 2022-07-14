@@ -13,7 +13,7 @@ namespace Servicios.Colecciones.Enlazadas
         private clsNodoEnlazado<Tipo> atrPrimero;
         private clsNodoEnlazado<Tipo> atrUltimo;
         private int atrLongitud;
-        private Tipo[] atrItems;
+        
 
 
         #endregion
@@ -34,23 +34,32 @@ namespace Servicios.Colecciones.Enlazadas
         //Revisaaaar
         public bool apilar(Tipo prmItem)
         {
-            clsNodoEnlazado<Tipo> varNodo = new clsNodoEnlazado<Tipo>();
-            varNodo.modificarItem(prmItem);
-            if (this.atrLongitud!=0)
+
+            if (this.atrLongitud<int.MaxValue/16)
             {
-                this.atrPrimero = varNodo;
-                this.atrUltimo = varNodo;
-                
+                clsNodoEnlazado<Tipo> varNodo = new clsNodoEnlazado<Tipo>();
+                varNodo.modificarItem(prmItem);
+                if (this.atrLongitud != 0)
+                {
+                    this.atrPrimero = varNodo;
+                    this.atrUltimo = varNodo;
+
+                }
+                else
+                {
+                    varNodo.modificarSiguiente(this.atrPrimero);
+                    this.atrPrimero = varNodo;
+                }
+                this.atrLongitud++;
+
+
+                return true;
             }
             else
             {
-                varNodo.modificarSiguiente(this.atrPrimero);
-                this.atrPrimero = varNodo;
+                return false;
             }
-            this.atrLongitud++;
-
-            this.atrItems = new Tipo[this.atrLongitud];
-            return true;
+            
 
         }
 
@@ -75,21 +84,22 @@ namespace Servicios.Colecciones.Enlazadas
         public Tipo[] darItems()
         {
             clsNodoEnlazado<Tipo> varNodo = this.darPrimero();
+            Tipo[] varItems=null;
             if (varNodo != null)
             {
                 int varIndice = 0;
-                
+                varItems = new Tipo[this.atrLongitud];
                 while (varNodo!=null)
                 {
-                    this.atrItems[varIndice] = varNodo.darItem();
+                    varItems[varIndice] = varNodo.darItem();
                     varIndice++;
                     varNodo = varNodo.darSiguiente();
                 }
-                return this.atrItems;
+                return varItems;
             }
             else
             {
-                return this.atrItems;
+                return varItems;
             }
         }
 
@@ -128,7 +138,6 @@ namespace Servicios.Colecciones.Enlazadas
                     this.atrLongitud++;
                 }
                 this.atrUltimo = nodo;
-                this.atrItems = prmItems;
                 return true;
             }
             else
