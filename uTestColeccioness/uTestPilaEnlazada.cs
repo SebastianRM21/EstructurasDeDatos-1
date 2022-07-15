@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Servicios.Colecciones.Enlazadas;
-using System;
 
-namespace Servicios.Colecciones
+namespace uTestDemoColecciones
 {
     [TestClass]
     public class uTestPilaEnlazada
@@ -12,8 +11,7 @@ namespace Servicios.Colecciones
         private int[] testItems;
         private int testItem;
         #endregion
-
-        #region Casos de prueba
+        #region Casos de Prueba
         #region Constructores
         #region Constructor NO Parametrizado Por Defecto
         [TestMethod]
@@ -32,7 +30,6 @@ namespace Servicios.Colecciones
         #endregion
         #endregion
         #region Mutadores
-
         [TestMethod]
         public void uTestPonerItemsConLongitudCero()
         {
@@ -47,7 +44,6 @@ namespace Servicios.Colecciones
             Assert.AreEqual(null, testTAD.darUltimo());
             #endregion
         }
-
         [TestMethod]
         public void uTestPonerItemsConLongitudNormal()
         {
@@ -62,11 +58,10 @@ namespace Servicios.Colecciones
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
         }
-        /*
+        
         [TestMethod]
         public void uTestPonerItemsConLongitudEnBorde()
         {
-            //cuidadoo
             #region Configurar
             testTAD = new clsPilaEnlazada<int>();
             testItems = new int[int.MaxValue / 16];
@@ -77,7 +72,7 @@ namespace Servicios.Colecciones
             Assert.AreEqual(int.MaxValue / 16, testTAD.darItems().Length);
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
-        }*/
+        }
         [TestMethod]
         public void uTestPonerItemsConLongitudMasAllaDelBorde()
         {
@@ -123,9 +118,8 @@ namespace Servicios.Colecciones
         }
         #endregion
         #region Consultores
-
         #endregion
-        #region CRUDS
+        #region CRUDs
         #region Apilar
         [TestMethod]
         public void uTestApilarItemEnTADVacio()
@@ -139,6 +133,7 @@ namespace Servicios.Colecciones
             Assert.AreEqual(1, testTAD.darLongitud());
             #endregion
         }
+        [TestMethod]
         public void uTestApilarItemEnTADConItems()
         {
             #region Configurar
@@ -161,7 +156,7 @@ namespace Servicios.Colecciones
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
         }
-        /*
+        
         [TestMethod]
         public void uTestApilarItemEnTADConItemsEnBorde()
         {
@@ -176,8 +171,7 @@ namespace Servicios.Colecciones
             Assert.AreEqual(int.MaxValue / 16, testTAD.darItems().Length);
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
-        }*/
-
+        }
         #endregion
         #region Desapilar
         [TestMethod]
@@ -194,7 +188,6 @@ namespace Servicios.Colecciones
             Assert.AreEqual(null, testTAD.darItems());
             #endregion
         }
-
         [TestMethod]
         public void uTestDesapilarEnTADConItems()
         {
@@ -235,11 +228,58 @@ namespace Servicios.Colecciones
             Assert.AreEqual(null, testTAD.darItems());
             #endregion
         }
+        [TestMethod]
+        public void uTestRevisarEnTADConItems()
+        {
+            #region Configurar
+            testTAD = new clsPilaEnlazada<int>();
+            testItems = new int[3];
+            testItems[0] = 123;
+            testItems[1] = 456;
+            testItems[2] = 789;
+            testTAD.ponerItems(testItems);
+            testItem = -1;
+            #endregion
+            #region Probar y Comprobar
+            Assert.AreEqual(true, testTAD.revisar(ref testItem));
+            Assert.AreEqual(123, testItem);
+            Assert.AreEqual(3, testTAD.darLongitud());
+            Assert.AreEqual(3, testTAD.darItems().Length);
+            CollectionAssert.AreEqual(testItems, testTAD.darItems());
+            #endregion
+        }
+        #endregion
+        #region Reversar
+        [TestMethod]
+        public void testReversarEnTADConItems()
+        {
+            #region Inicializar
+            testTAD = new clsPilaEnlazada<int>();
+            testItems = new int[4] { 1, 2, 3, 4 };
+            testTAD.ponerItems(testItems);
+            testItems = new int[4] { 4, 3, 2, 1 };
+            #endregion
+            #region Probar y Comprobar
+            Assert.AreEqual(true, testTAD.reversar());
+            Assert.AreEqual(4, testTAD.darLongitud());
+            Assert.AreEqual(4, testTAD.darItems().Length);
+            CollectionAssert.AreEqual(testItems, testTAD.darItems());
+            #endregion
+        }
+        [TestMethod]
+        public void testReversarConTADVacio()
+        {
+            #region Inicializar
+            testTAD = new clsPilaEnlazada<int>();
+            #endregion
+            #region Comprobar y Comprobar
+            Assert.AreEqual(false, testTAD.reversar());
+            Assert.AreEqual(0, testTAD.darLongitud());
+            Assert.AreEqual(null, testTAD.darItems());
+            #endregion
+        }
         #endregion
         #endregion
         #endregion
-
-
-
     }
 }

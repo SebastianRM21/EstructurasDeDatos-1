@@ -39,7 +39,7 @@ namespace Servicios.Colecciones.Enlazadas
             {
                 clsNodoEnlazado<Tipo> varNodo = new clsNodoEnlazado<Tipo>();
                 varNodo.modificarItem(prmItem);
-                if (this.atrLongitud != 0)
+                if (this.atrLongitud == 0)
                 {
                     this.atrPrimero = varNodo;
                     this.atrUltimo = varNodo;
@@ -102,6 +102,8 @@ namespace Servicios.Colecciones.Enlazadas
             if (this.atrLongitud!=0)
             {
 
+                prmItem = this.atrPrimero.darItem();
+
 
                 return true;
             }
@@ -156,6 +158,7 @@ namespace Servicios.Colecciones.Enlazadas
         //peligro, revisar
         public bool ponerItems(Tipo[] prmItems)
         {
+            
             if (prmItems.Length!=0 && prmItems.Length<=(int.MaxValue/16))
             {
                 clsNodoEnlazado<Tipo> nodo = new clsNodoEnlazado<Tipo>();
@@ -194,7 +197,24 @@ namespace Servicios.Colecciones.Enlazadas
         #region Sorty
         public bool reversar()
         {
-            throw new NotImplementedException();
+            if (this.atrLongitud!=0)
+            {
+                Tipo[] varTempItems = new Tipo[this.atrLongitud];
+                Tipo[] varItems = darItems();
+                for (int indice = 0; indice < this.atrLongitud; indice++)
+                {
+                    varTempItems[indice] = varItems[(this.atrLongitud-1)-indice];
+                }
+                this.atrLongitud=0;
+                ponerItems(varTempItems);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
         #endregion
         #endregion
