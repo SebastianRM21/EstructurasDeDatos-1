@@ -67,7 +67,30 @@ namespace Servicios.Colecciones.Enlazadas
 
         public bool desapilar(ref Tipo prmItem)
         {
-            throw new NotImplementedException();
+            if (this.atrLongitud!=0)
+            {
+                if (this.atrLongitud==1)
+                {
+                    prmItem = this.atrPrimero.darItem();
+                    this.atrPrimero = null;
+                    this.atrUltimo = null;
+                    this.atrLongitud--;
+                }
+                else
+                {
+                    prmItem = this.atrPrimero.darItem();
+                    this.atrPrimero = this.atrPrimero.darSiguiente();
+                    this.atrLongitud--;
+                }
+               
+
+                return true;
+            }
+            else
+            {
+                prmItem=default(Tipo);
+                return false;
+            }
         }
 
         
@@ -76,7 +99,17 @@ namespace Servicios.Colecciones.Enlazadas
 
         public bool revisar(ref Tipo prmItem)
         {
-            throw new NotImplementedException();
+            if (this.atrLongitud!=0)
+            {
+
+
+                return true;
+            }
+            else
+            {
+                prmItem = default(Tipo);
+                return false;
+            }
         }
         #endregion
         #region Accesores

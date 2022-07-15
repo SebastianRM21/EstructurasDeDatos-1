@@ -180,7 +180,61 @@ namespace Servicios.Colecciones
 
         #endregion
         #region Desapilar
+        [TestMethod]
+        public void uTestDesapilarEnTADVacio()
+        {
+            #region Configurar
+            testTAD = new clsPilaEnlazada<int>();
+            testItem = -1;
+            #endregion
+            #region Probar y Comprobar
+            Assert.AreEqual(false, testTAD.desapilar(ref testItem));
+            Assert.AreEqual(0, testItem);
+            Assert.AreEqual(0, testTAD.darLongitud());
+            Assert.AreEqual(null, testTAD.darItems());
+            #endregion
+        }
 
+        [TestMethod]
+        public void uTestDesapilarEnTADConItems()
+        {
+            #region Configurar
+            testTAD = new clsPilaEnlazada<int>();
+            testItems = new int[3];
+            testItems[0] = 123;
+            testItems[1] = 456;
+            testItems[2] = 789;
+            testTAD.ponerItems(testItems);
+
+            testItems = new int[2];
+            testItems[0] = 456;
+            testItems[1] = 789;
+            testItem = -1;
+            #endregion
+            #region Probar y Comprobar
+            Assert.AreEqual(true, testTAD.desapilar(ref testItem));
+            Assert.AreEqual(123, testItem);
+            Assert.AreEqual(2, testTAD.darLongitud());
+            CollectionAssert.AreEqual(testItems, testTAD.darItems());
+            #endregion
+        }
+        #endregion
+        #region Revisar
+        [TestMethod]
+        public void uTestRevisarEnTADVacio()
+        {
+            #region Configurar
+            testTAD = new clsPilaEnlazada<int>();
+            testItems = new int[0];
+            testItem = -1;
+            #endregion
+            #region Probar y Comprobar
+            Assert.AreEqual(false, testTAD.revisar(ref testItem));
+            Assert.AreEqual(0, testItem);
+            Assert.AreEqual(0, testTAD.darLongitud());
+            Assert.AreEqual(null, testTAD.darItems());
+            #endregion
+        }
         #endregion
         #endregion
         #endregion
