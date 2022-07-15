@@ -25,8 +25,8 @@ namespace Servicios.Colecciones.Enlazadas
         {
             
             this.atrLongitud = 0;
-
-
+            this.atrPrimero = null;
+            this.atrUltimo = null;
         }
 
         #endregion
