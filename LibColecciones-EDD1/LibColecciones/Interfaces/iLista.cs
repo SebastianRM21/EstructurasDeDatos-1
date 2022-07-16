@@ -18,6 +18,7 @@ namespace Servicios.Colecciones.Interfaces
 
         bool modificar(int prmIndice, Tipo prmItem);
 
+        bool recuperar(int prmIndice, ref Tipo prmItem);
         #endregion
         #region QUERY
         int encontrar(Tipo prmItem);

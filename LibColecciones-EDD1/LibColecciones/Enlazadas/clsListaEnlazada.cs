@@ -38,6 +38,10 @@ namespace Servicios.Colecciones.Enlazadas
         {
             throw new NotImplementedException();
         }
+        public bool recuperar(int prmIndice, ref Tipo prmItem)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
         #region QUERY
 
@@ -79,6 +83,8 @@ namespace Servicios.Colecciones.Enlazadas
         {
             throw new NotImplementedException();
         }
+
+        
 
         #endregion
         #endregion

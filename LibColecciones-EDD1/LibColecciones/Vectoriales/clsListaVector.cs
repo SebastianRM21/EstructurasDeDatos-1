@@ -507,21 +507,23 @@ namespace Servicios.Colecciones.Vectoriales
 
         public int encontrar(Tipo prmItem)
         {
+            int varIndice = -1;
             if (this.atrLongitud!=0)
             {
                 for (int i = 0; i < this.atrLongitud; i++)
                 {
                     if (this.atrItems[i].Equals(prmItem))
                     {
-                        return i;
+                        varIndice = i;
+                        return varIndice;
 
                     }
                 }
-                return -1;
+                return varIndice;
             }
             else
             {
-                return -1;
+                return varIndice;
 
             }
         }
