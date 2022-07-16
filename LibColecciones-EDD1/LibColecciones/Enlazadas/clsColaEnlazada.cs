@@ -10,9 +10,9 @@ namespace Servicios.Colecciones.Enlazadas
         #region Asociativos
         private clsNodoEnlazado<Tipo> atrPrimero;
         private clsNodoEnlazado<Tipo> atrUltimo;
-        private int atrLongitud;
 
         #endregion
+        private int atrLongitud;
         #endregion
 
 

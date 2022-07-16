@@ -12,18 +12,15 @@ namespace Servicios.Colecciones.Enlazadas
 
         private clsNodoEnlazado<Tipo> atrPrimero;
         private clsNodoEnlazado<Tipo> atrUltimo;
-        private int atrLongitud;
-        
-
 
         #endregion
-
+        private int atrLongitud;
         #endregion
         #region Operaciones
         #region Constructores
         public clsPilaEnlazada()
         {
-            
+
             this.atrLongitud = 0;
             this.atrPrimero = null;
             this.atrUltimo = null;
@@ -35,7 +32,7 @@ namespace Servicios.Colecciones.Enlazadas
         public bool apilar(Tipo prmItem)
         {
 
-            if (this.atrLongitud<int.MaxValue/16)
+            if (this.atrLongitud < int.MaxValue / 16)
             {
                 clsNodoEnlazado<Tipo> varNodo = new clsNodoEnlazado<Tipo>();
                 varNodo.modificarItem(prmItem);
@@ -59,17 +56,17 @@ namespace Servicios.Colecciones.Enlazadas
             {
                 return false;
             }
-            
+
 
         }
 
-       
+
 
         public bool desapilar(ref Tipo prmItem)
         {
-            if (this.atrLongitud!=0)
+            if (this.atrLongitud != 0)
             {
-                if (this.atrLongitud==1)
+                if (this.atrLongitud == 1)
                 {
                     prmItem = this.atrPrimero.darItem();
                     this.atrPrimero = null;
@@ -78,28 +75,30 @@ namespace Servicios.Colecciones.Enlazadas
                 }
                 else
                 {
+
                     prmItem = this.atrPrimero.darItem();
                     this.atrPrimero = this.atrPrimero.darSiguiente();
                     this.atrLongitud--;
+
                 }
-               
+
 
                 return true;
             }
             else
             {
-                prmItem=default(Tipo);
+                prmItem = default(Tipo);
                 return false;
             }
         }
 
-        
 
-        
+
+
 
         public bool revisar(ref Tipo prmItem)
         {
-            if (this.atrLongitud!=0)
+            if (this.atrLongitud != 0)
             {
 
                 prmItem = this.atrPrimero.darItem();
@@ -119,12 +118,12 @@ namespace Servicios.Colecciones.Enlazadas
         public Tipo[] darItems()
         {
             clsNodoEnlazado<Tipo> varNodo = this.darPrimero();
-            Tipo[] varItems=null;
+            Tipo[] varItems = null;
             if (varNodo != null)
             {
                 int varIndice = 0;
                 varItems = new Tipo[this.atrLongitud];
-                while (varNodo!=null)
+                while (varNodo != null)
                 {
                     varItems[varIndice] = varNodo.darItem();
                     varIndice++;
@@ -158,14 +157,14 @@ namespace Servicios.Colecciones.Enlazadas
         //peligro, revisar
         public bool ponerItems(Tipo[] prmItems)
         {
-            
-            if (prmItems.Length!=0 && prmItems.Length<=(int.MaxValue/16))
+
+            if (prmItems.Length != 0 && prmItems.Length <= (int.MaxValue / 16))
             {
                 clsNodoEnlazado<Tipo> nodo = new clsNodoEnlazado<Tipo>();
                 nodo.modificarItem(prmItems[0]);
                 this.atrPrimero = nodo;
                 this.atrLongitud++;
-                for (int indice=1;indice<prmItems.Length;indice++)
+                for (int indice = 1; indice < prmItems.Length; indice++)
                 {
                     clsNodoEnlazado<Tipo> siguiente = new clsNodoEnlazado<Tipo>();
                     siguiente.modificarItem(prmItems[indice]);
@@ -197,15 +196,15 @@ namespace Servicios.Colecciones.Enlazadas
         #region Sorty
         public bool reversar()
         {
-            if (this.atrLongitud!=0)
+            if (this.atrLongitud != 0)
             {
                 Tipo[] varTempItems = new Tipo[this.atrLongitud];
                 Tipo[] varItems = darItems();
                 for (int indice = 0; indice < this.atrLongitud; indice++)
                 {
-                    varTempItems[indice] = varItems[(this.atrLongitud-1)-indice];
+                    varTempItems[indice] = varItems[(this.atrLongitud - 1) - indice];
                 }
-                this.atrLongitud=0;
+                this.atrLongitud = 0;
                 ponerItems(varTempItems);
 
                 return true;

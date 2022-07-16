@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Servicios.Colecciones.Enlazadas;
 
-namespace Servicios.Colecciones
+namespace uTestDemoColecciones
 {
     [TestClass]
     public class uTestColaEnlazada
@@ -11,11 +11,9 @@ namespace Servicios.Colecciones
         private int[] testItems;
         private int testItem;
         #endregion
-
         #region Casos de Prueba
         #region Constructores
         #region Constructor NO Parametrizado Por Defecto
-
         [TestMethod]
         public void uTestConstructorNoParametrizado()
         {
@@ -31,7 +29,6 @@ namespace Servicios.Colecciones
         }
         #endregion
         #endregion
-
         #region Mutadores
         [TestMethod]
         public void uTestPonerItemsConLongitudCero()
@@ -282,7 +279,5 @@ namespace Servicios.Colecciones
         #endregion
         #endregion
         #endregion
-
-
     }
 }
