@@ -160,19 +160,19 @@ namespace Servicios.Colecciones.Enlazadas
 
             if (prmItems.Length != 0 && prmItems.Length <= (int.MaxValue / 16))
             {
-                clsNodoEnlazado<Tipo> nodo = new clsNodoEnlazado<Tipo>();
-                nodo.modificarItem(prmItems[0]);
-                this.atrPrimero = nodo;
+                clsNodoEnlazado<Tipo> varNodo = new clsNodoEnlazado<Tipo>();
+                varNodo.modificarItem(prmItems[0]);
+                this.atrPrimero = varNodo;
                 this.atrLongitud++;
                 for (int indice = 1; indice < prmItems.Length; indice++)
                 {
-                    clsNodoEnlazado<Tipo> siguiente = new clsNodoEnlazado<Tipo>();
-                    siguiente.modificarItem(prmItems[indice]);
-                    nodo.modificarSiguiente(siguiente);
-                    nodo = siguiente;
+                    clsNodoEnlazado<Tipo> varSiguiente = new clsNodoEnlazado<Tipo>();
+                    varSiguiente.modificarItem(prmItems[indice]);
+                    varNodo.modificarSiguiente(varSiguiente);
+                    varNodo = varSiguiente;
                     this.atrLongitud++;
                 }
-                this.atrUltimo = nodo;
+                this.atrUltimo = varNodo;
                 return true;
             }
             else

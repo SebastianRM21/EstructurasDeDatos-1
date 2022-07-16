@@ -8,8 +8,8 @@ namespace Servicios.Colecciones.Enlazadas
     {
         #region Atributos
         #region Asociativos
-        private Servicios.Colecciones.Nodos.clsNodoEnlazado<Tipo> atrPrimero;
-        private Servicios.Colecciones.Nodos.clsNodoEnlazado<Tipo> atrUltimo;
+        private clsNodoEnlazado<Tipo> atrPrimero;
+        private clsNodoEnlazado<Tipo> atrUltimo;
         #endregion
         private int atrLongitud;
         #endregion
@@ -105,7 +105,7 @@ namespace Servicios.Colecciones.Enlazadas
 
         public bool extraer(int prmIndice, ref Tipo prmItem)
         {
-            if (prmIndice >= 0 && prmIndice < this.atrLongitud && this.atrLongitud!=0)
+            if (prmIndice >= 0 && prmIndice < this.atrLongitud && this.atrLongitud != 0)
             {
                 if (this.atrLongitud == 1)
                 {
@@ -146,13 +146,10 @@ namespace Servicios.Colecciones.Enlazadas
 
                             if (varIndice == prmIndice - 1)
                             {
+                                prmItem = varNodoTemp.darSiguiente().darItem();
                                 varNodoTemp.modificarSiguiente(varNodoTemp.darSiguiente().darSiguiente());
                             }
-                            if (varIndice == prmIndice)
-                            {
-                                prmItem = varNodoTemp.darItem();
-                                varNodoTemp = null;
-                            }
+                            
                             varIndice++;
                             varNodoTemp = varNodoTemp.darSiguiente();
                         }

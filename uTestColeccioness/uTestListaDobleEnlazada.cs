@@ -1,19 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Servicios.Colecciones.Enlazadas;
-using System;
 
 namespace uTestDemoColecciones
 {
     [TestClass]
-    public class utestListaEnlazada
+    public class utestListaDobleEnlazada
     {
-
         #region Atributos de Prueba
-        private clsListaEnlazada<int> testTAD;
+        private clsListaDobleEnlazada<int> testTAD;
         private int[] testItems;
         private int testItem;
         #endregion
-
         #region Casos de Prueba
         #region Constructores
         #region Constructor NO Parametrizado Por Defecto
@@ -23,7 +20,7 @@ namespace uTestDemoColecciones
             #region Configurar
             #endregion
             #region Probar y Comprobar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             Assert.AreEqual(null, testTAD.darItems());
             Assert.AreEqual(0, testTAD.darLongitud());
             Assert.AreEqual(null, testTAD.darPrimero());
@@ -37,7 +34,7 @@ namespace uTestDemoColecciones
         public void uTestPonerItemsConLongitudCero()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[0];
             #endregion
             #region Probar y Comprobar
@@ -51,7 +48,7 @@ namespace uTestDemoColecciones
         public void uTestPonerItemsConLongitudNormal()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 3 };
             #endregion
             #region Probar y Comprobar
@@ -68,7 +65,7 @@ namespace uTestDemoColecciones
         public void uTestPonerItemsConLongitudEnBorde()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[int.MaxValue / 16];
             #endregion
             #region Probar y Comprobar
@@ -82,7 +79,7 @@ namespace uTestDemoColecciones
         public void uTestPonerItemsConLongitudMasAllaDelBorde()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[int.MaxValue / 16 + 1];
             #endregion
             #region Probar y Comprobar
@@ -97,7 +94,7 @@ namespace uTestDemoColecciones
         public void uTestDarItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 3 };
             testTAD.ponerItems(testItems);
             #endregion
@@ -111,7 +108,7 @@ namespace uTestDemoColecciones
         public void uTestDarLongitud()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 3 };
             testTAD.ponerItems(testItems);
             #endregion
@@ -121,7 +118,6 @@ namespace uTestDemoColecciones
         }
         #endregion
         #region Consultores
-
         #endregion
         #region CRUDs
         #region Agregar
@@ -129,7 +125,7 @@ namespace uTestDemoColecciones
         public void uTestAgregarItemEnListaVacia()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[1];
             testItems[0] = 123;
             #endregion
@@ -145,7 +141,7 @@ namespace uTestDemoColecciones
         public void uTestAgregarItemEnListaConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3];
             testItems[0] = 789;
             testItems[1] = 456;
@@ -169,7 +165,7 @@ namespace uTestDemoColecciones
         public void uTestAgregarItemEnListaEnBorde()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[int.MaxValue / 16];
             testTAD.ponerItems(testItems);
             #endregion
@@ -188,7 +184,7 @@ namespace uTestDemoColecciones
         public void uTestInsertarItemConIndiceNegativoEnTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -201,7 +197,7 @@ namespace uTestDemoColecciones
         public void uTestInsertarItemConIndiceNegativoEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3];
             testItems[0] = 1;
             testItems[1] = 2;
@@ -216,12 +212,12 @@ namespace uTestDemoColecciones
             #endregion
         }
         #endregion
-        #region Indice cero
+        #region Indice Cero
         [TestMethod]
         public void uTestInsertarItemEnIndiceCeroConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[1];
             testItems[0] = 4;
             #endregion
@@ -236,7 +232,7 @@ namespace uTestDemoColecciones
         public void uTestInsertarItemEnIndiceCeroEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3];
             testItems[0] = 1;
             testItems[1] = 2;
@@ -262,7 +258,7 @@ namespace uTestDemoColecciones
         public void uTestInsertarItemEnIndiceConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -275,7 +271,7 @@ namespace uTestDemoColecciones
         public void uTestInsertarItemEnIndiceEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3];
             testItems[0] = 1;
             testItems[1] = 2;
@@ -301,7 +297,7 @@ namespace uTestDemoColecciones
         public void uTestInsertarItemEnLongitudConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[1];
             testItems[0] = 4;
             #endregion
@@ -316,7 +312,7 @@ namespace uTestDemoColecciones
         public void uTestInsertarItemEnLongitudEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3];
             testItems[0] = 1;
             testItems[1] = 2;
@@ -342,7 +338,7 @@ namespace uTestDemoColecciones
         public void uTestInsertarItemMasAllaDeLongitudConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -355,7 +351,7 @@ namespace uTestDemoColecciones
         public void uTestInsertarItemMasAllaDeLongitudEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3];
             testItems[0] = 1;
             testItems[1] = 2;
@@ -377,7 +373,7 @@ namespace uTestDemoColecciones
         public void uTestExtraerItemConIndiceNegativoConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -391,7 +387,7 @@ namespace uTestDemoColecciones
         public void uTestExtraerItemConIndiceNegativoEnTADConItems()
         {  //Poner un metodo mutador para Capacidad en Vectoriales.  bool ponerCapacidad(int prmValor)
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3];
             testItems[0] = 1;
             testItems[1] = 2;
@@ -412,7 +408,7 @@ namespace uTestDemoColecciones
         public void uTestExtraerItemEnIndiceCeroConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -426,7 +422,7 @@ namespace uTestDemoColecciones
         public void uTestExtraerItemEnIndiceCeroEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 3 };
             testTAD.ponerItems(testItems);
             testItems = new int[2] { 2, 3 };
@@ -445,7 +441,7 @@ namespace uTestDemoColecciones
         public void uTestExtraerItemEnIndiceConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -459,7 +455,7 @@ namespace uTestDemoColecciones
         public void uTestExtraerItemEnIndiceEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 3 };
             testTAD.ponerItems(testItems);
             testItems = new int[2] { 1, 2 };
@@ -472,15 +468,13 @@ namespace uTestDemoColecciones
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
         }
-
         #endregion
         #region Indice igual a Longitud
-
         [TestMethod]
         public void uTestExtraerItemEnLongitudConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -494,7 +488,7 @@ namespace uTestDemoColecciones
         public void uTestExtraerItemEnLongitudEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 3 };
             testTAD.ponerItems(testItems);
             #endregion
@@ -512,7 +506,7 @@ namespace uTestDemoColecciones
         public void uTestExtraerItemMasAllaDeLongitudConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -526,7 +520,7 @@ namespace uTestDemoColecciones
         public void uTestExtraerItemMasAllaDeLongitudEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 3 };
             testTAD.ponerItems(testItems);
             #endregion
@@ -541,14 +535,13 @@ namespace uTestDemoColecciones
         #endregion
         #endregion
         #region Modificar Item en Indice
-
         #region Indice Negativo
         [TestMethod]
         public void uTestModificarItemConIndiceNegativoConTADVacio()
         {
             #region Configurar 
             //TODO: Métodos para configurar TAD Vacio, Con Items, Lleno para todos las implementaciones.
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -561,7 +554,7 @@ namespace uTestDemoColecciones
         public void uTestModificarItemConIndiceNegativoEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3];
             testItems[0] = 1;
             testItems[1] = 2;
@@ -581,7 +574,7 @@ namespace uTestDemoColecciones
         public void uTestModificarItemEnIndiceCeroConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -594,7 +587,7 @@ namespace uTestDemoColecciones
         public void uTestModificarItemEnIndiceCeroEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3];
             testItems[0] = 1;
             testItems[1] = 2;
@@ -615,7 +608,7 @@ namespace uTestDemoColecciones
         public void uTestModificarItemEnIndiceConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -628,7 +621,7 @@ namespace uTestDemoColecciones
         public void uTestModificarItemEnIndiceEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3];
             testItems[0] = 1;
             testItems[1] = 2;
@@ -649,7 +642,7 @@ namespace uTestDemoColecciones
         public void uTestModificarItemEnLongitudConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -662,7 +655,7 @@ namespace uTestDemoColecciones
         public void uTestModificarItemEnLongitudEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3];
             testItems[0] = 1;
             testItems[1] = 2;
@@ -682,7 +675,7 @@ namespace uTestDemoColecciones
         public void uTestModificarItemMasAllaDeLongitudConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -695,7 +688,7 @@ namespace uTestDemoColecciones
         public void uTestModificarItemMasAllaDeLongitudEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3];
             testItems[0] = 1;
             testItems[1] = 2;
@@ -710,7 +703,6 @@ namespace uTestDemoColecciones
             #endregion
         }
         #endregion
-
         #endregion
         #region Recuperar Item en Indice
         #region Indice Negativo
@@ -718,7 +710,7 @@ namespace uTestDemoColecciones
         public void uTestRecuperarItemConIndiceNegativoConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -732,7 +724,7 @@ namespace uTestDemoColecciones
         public void uTestRecuperarItemConIndiceNegativoEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3];
             testItems[0] = 1;
             testItems[1] = 2;
@@ -753,7 +745,7 @@ namespace uTestDemoColecciones
         public void uTestRecuperarItemEnIndiceCeroConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -767,7 +759,7 @@ namespace uTestDemoColecciones
         public void uTestRecuperarItemEnIndiceCeroEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 3 };
             testTAD.ponerItems(testItems);
             #endregion
@@ -785,7 +777,7 @@ namespace uTestDemoColecciones
         public void uTestRecuperarItemEnIndiceConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -799,7 +791,7 @@ namespace uTestDemoColecciones
         public void uTestRecuperarItemEnIndiceEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 3 };
             testTAD.ponerItems(testItems);
             #endregion
@@ -817,7 +809,7 @@ namespace uTestDemoColecciones
         public void uTestRecuperarItemEnLongitudConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -831,7 +823,7 @@ namespace uTestDemoColecciones
         public void uTestRecuperarItemEnLongitudEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 3 };
             testTAD.ponerItems(testItems);
             #endregion
@@ -843,14 +835,13 @@ namespace uTestDemoColecciones
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
         }
-
         #endregion
         #region Indice Más allá de Longitud
         [TestMethod]
         public void uTestRecuperarItemMasAllaDeLongitudConTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -864,7 +855,7 @@ namespace uTestDemoColecciones
         public void uTestRecuperarItemMasAllaDeLongitudEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 3 };
             testTAD.ponerItems(testItems);
             #endregion
@@ -883,7 +874,7 @@ namespace uTestDemoColecciones
         public void uTestContieneItemEnTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -896,7 +887,7 @@ namespace uTestDemoColecciones
         public void uTestContieneItemEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 3 };
             testTAD.ponerItems(testItems);
             #endregion
@@ -911,7 +902,7 @@ namespace uTestDemoColecciones
         public void uTestNoContieneItemEnTADItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 3 };
             testTAD.ponerItems(testItems);
             #endregion
@@ -928,7 +919,7 @@ namespace uTestDemoColecciones
         public void uTestEncontrarItemEnTADVacio()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Probar y Comprobar
@@ -941,7 +932,7 @@ namespace uTestDemoColecciones
         public void uTestEncontrarItemEnTADConItems()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 3 };
             testTAD.ponerItems(testItems);
             #endregion
@@ -956,7 +947,7 @@ namespace uTestDemoColecciones
         public void uTestEncontrarItemEnTADConItemsVariasOcurrencias()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 2 };
             testTAD.ponerItems(testItems);
             #endregion
@@ -971,7 +962,7 @@ namespace uTestDemoColecciones
         public void uTestEncontrarItemEnTADConItemsNingunaOcurrencia()
         {
             #region Configurar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[3] { 1, 2, 3 };
             testTAD.ponerItems(testItems);
             #endregion
@@ -988,7 +979,7 @@ namespace uTestDemoColecciones
         public void testReversarEnTADConItems()
         {
             #region Inicializar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = new int[4] { 1, 2, 3, 4 };
             testTAD.ponerItems(testItems);
             testItems = new int[4] { 4, 3, 2, 1 };
@@ -1004,7 +995,7 @@ namespace uTestDemoColecciones
         public void testReversarConTADVacio()
         {
             #region Inicializar
-            testTAD = new clsListaEnlazada<int>();
+            testTAD = new clsListaDobleEnlazada<int>();
             testItems = null;
             #endregion
             #region Comprobar y Comprobar
@@ -1016,8 +1007,5 @@ namespace uTestDemoColecciones
         #endregion
         #endregion
         #endregion
-
-
-
     }
 }
