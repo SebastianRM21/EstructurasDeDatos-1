@@ -28,7 +28,6 @@ namespace Servicios.Colecciones.Enlazadas
 
         #endregion
         #region CRUD
-        //Revisaaaar
         public bool apilar(Tipo prmItem)
         {
 
@@ -114,7 +113,7 @@ namespace Servicios.Colecciones.Enlazadas
         }
         #endregion
         #region Accesores
-        //peligro, revisar
+        
         public Tipo[] darItems()
         {
             clsNodoEnlazado<Tipo> varNodo = this.darPrimero();
@@ -154,7 +153,7 @@ namespace Servicios.Colecciones.Enlazadas
 
         #endregion
         #region Mutadores
-        //peligro, revisar
+       
         public bool ponerItems(Tipo[] prmItems)
         {
 

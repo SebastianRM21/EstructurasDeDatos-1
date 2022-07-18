@@ -298,40 +298,6 @@ namespace Servicios.Colecciones.Vectoriales
             this.atrLongitud++;
 
             return true;
-            /*
-            if (this.atrCapacidad > 0 && this.atrLongitud!=this.atrCapacidad)
-            {
-                if (this.atrLongitud==0)
-                {
-                    this.atrItems[0] = prmItem;
-                }
-                else
-                {
-                    for (int indice= this.atrLongitud; indice>0;indice--)
-                    {
-                        this.atrItems[indice] = this.atrItems[indice - 1];
-                        
-                    }
-                    this.atrItems[0] = prmItem;
-                }
-                
-                this.atrLongitud++;
-                
-                return true;
-            }
-            else if(this.atrFlexible)
-            {
-                
-                aumentarCapacidad();
-                return apilar(prmItem);
-            }
-            else
-            {
-                return false;
-
-            }*/
-
-
         }
         
         public bool desapilar(ref Tipo prmItem)
@@ -386,30 +352,6 @@ namespace Servicios.Colecciones.Vectoriales
             {
                 return false;
             }
-
-            /*
-            if (this.atrLongitud!=0)
-            {
-                Tipo[] varTempItems = new Tipo[this.atrLongitud];
-                int iterar = this.atrLongitud;
-                for (int indice=0;indice<iterar;indice++)
-                {
-                    desapilar(ref varTempItems[indice]);
-                    
-                }
-                
-                for (int indice=0;indice<varTempItems.Length;indice++)
-                {
-                    apilar(varTempItems[indice]);
-
-                }
-                
-                return true;
-            }
-            else
-            {
-                return false;
-            }*/
         }
 
 

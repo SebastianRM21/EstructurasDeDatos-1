@@ -304,30 +304,6 @@ namespace Servicios.Colecciones.Vectoriales
             this.atrLongitud++;
             return true;
 
-
-            /*
-            if (this.atrCapacidad > 0 && this.atrLongitud != this.atrCapacidad)
-            {
-                if (this.atrLongitud == 0)
-                {
-                    this.atrItems[0] = prmItem;
-                }
-                else
-                {
-                    this.atrItems[atrLongitud] = prmItem;
-                }
-                this.atrLongitud++;
-                return true;
-            }
-            else if (this.atrFlexible)
-            {
-                aumentarCapacidad();
-                return agregar(prmItem);
-            }
-            else
-            {
-                return false;
-            }*/
         }
 
         public bool insertar(int prmIndice, Tipo prmItem)
@@ -373,52 +349,6 @@ namespace Servicios.Colecciones.Vectoriales
             {
                 return false;
             }
-
-           
-
-
-            /*
-            if (prmIndice>=0 && prmIndice<=this.atrLongitud)
-            {
-                if (this.atrCapacidad > 0 && this.atrLongitud != this.atrCapacidad)
-                {
-
-                    if (this.atrLongitud == 0)
-                    {
-                        this.atrItems[0] = prmItem;
-                    }
-                    else
-                    {
-
-                        for (int indice = this.atrLongitud; indice > prmIndice; indice--)
-                        {
-                            this.atrItems[indice] = this.atrItems[indice - 1];
-
-                        }
-                        this.atrItems[prmIndice] = prmItem;
-                    }
-
-                    this.atrLongitud++;
-
-                    return true;
-                }
-                else if (this.atrFlexible)
-                {
-
-                    aumentarCapacidad();
-                    return insertarEn(prmIndice, prmItem);
-                }
-                else
-                {
-
-                    return false;
-
-                }
-            }
-            else
-            {
-                return false;
-            }*/
         }
 
         public bool extraer(int prmIndice, ref Tipo prmItem)
@@ -547,26 +477,6 @@ namespace Servicios.Colecciones.Vectoriales
             {
                 return false;
             }
-            /*if (this.atrLongitud!=0)
-            {
-                Tipo[] varTempItems = new Tipo[this.atrLongitud];
-                int iterar = this.atrLongitud;
-                for (int indice = 0; indice < iterar; indice++)
-                {
-                    extraer(0,ref varTempItems[indice]);
-                }
-
-                for (int indice = varTempItems.Length - 1; indice >= 0; indice--)
-                {
-                    agregar(varTempItems[indice]);
-                }
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }*/
         }
         #endregion
         #endregion

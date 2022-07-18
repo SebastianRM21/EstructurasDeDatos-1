@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Servicios.Colecciones.Vectoriales;
 
 namespace Colecciones.Servicios.Pruebas

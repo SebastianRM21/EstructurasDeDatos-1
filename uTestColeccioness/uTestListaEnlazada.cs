@@ -1,19 +1,17 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Servicios.Colecciones.Enlazadas;
-using System;
+using System.Collections.Generic;
 
 namespace uTestDemoColecciones
 {
     [TestClass]
     public class utestListaEnlazada
     {
-
         #region Atributos de Prueba
         private clsListaEnlazada<int> testTAD;
         private int[] testItems;
         private int testItem;
         #endregion
-
         #region Casos de Prueba
         #region Constructores
         #region Constructor NO Parametrizado Por Defecto
@@ -63,7 +61,7 @@ namespace uTestDemoColecciones
             Assert.AreEqual(3, testTAD.darItems().Length);
             #endregion
         }
-        /*
+        
         [TestMethod]
         public void uTestPonerItemsConLongitudEnBorde()
         {
@@ -77,7 +75,7 @@ namespace uTestDemoColecciones
             Assert.AreEqual(int.MaxValue / 16, testTAD.darItems().Length);
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
-        }*/
+        }
         [TestMethod]
         public void uTestPonerItemsConLongitudMasAllaDelBorde()
         {
@@ -121,7 +119,6 @@ namespace uTestDemoColecciones
         }
         #endregion
         #region Consultores
-
         #endregion
         #region CRUDs
         #region Agregar
@@ -164,7 +161,7 @@ namespace uTestDemoColecciones
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
         }
-        /*
+        
         [TestMethod]
         public void uTestAgregarItemEnListaEnBorde()
         {
@@ -179,7 +176,7 @@ namespace uTestDemoColecciones
             Assert.AreEqual(int.MaxValue / 16, testTAD.darItems().Length);
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
-        }*/
+        }
 
         #endregion
         #region Insertar Item en Indice
@@ -216,7 +213,7 @@ namespace uTestDemoColecciones
             #endregion
         }
         #endregion
-        #region Indice cero
+        #region Indice Cero
         [TestMethod]
         public void uTestInsertarItemEnIndiceCeroConTADVacio()
         {
@@ -472,10 +469,8 @@ namespace uTestDemoColecciones
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
         }
-
         #endregion
         #region Indice igual a Longitud
-
         [TestMethod]
         public void uTestExtraerItemEnLongitudConTADVacio()
         {
@@ -541,7 +536,6 @@ namespace uTestDemoColecciones
         #endregion
         #endregion
         #region Modificar Item en Indice
-
         #region Indice Negativo
         [TestMethod]
         public void uTestModificarItemConIndiceNegativoConTADVacio()
@@ -710,7 +704,6 @@ namespace uTestDemoColecciones
             #endregion
         }
         #endregion
-
         #endregion
         #region Recuperar Item en Indice
         #region Indice Negativo
@@ -843,7 +836,6 @@ namespace uTestDemoColecciones
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
         }
-
         #endregion
         #region Indice Más allá de Longitud
         [TestMethod]
@@ -1016,8 +1008,5 @@ namespace uTestDemoColecciones
         #endregion
         #endregion
         #endregion
-
-
-
     }
 }
