@@ -1,17 +1,14 @@
 ﻿using Servicios.Colecciones.Interfaces;
+using Servicios.Colecciones.Tads;
 using System;
 
 namespace Servicios.Colecciones.Vectoriales
 {
-    public class clsColaVector<Tipo> : iCola<Tipo> where Tipo : IComparable<Tipo>
+    public class clsColaVector<Tipo> : clsTADVectorial<Tipo>, iCola<Tipo> where Tipo : IComparable<Tipo>
     {
         #region Atributos
-        private int atrLongitud;
-        private Tipo[] atrItems;
-        private int atrCapacidad;
-        private bool atrFlexible = true;
-        private int atrFactorCrecimiento = 1000;
-        private int atrEstadoCapacidad;
+       
+        
         #endregion
 
         #region Operaciones
@@ -138,7 +135,7 @@ namespace Servicios.Colecciones.Vectoriales
         }
         #endregion
         #region Mutadores
-
+        override
         public bool ponerItems(Tipo[] prmItems)
         {
             bool varBandera = false;
@@ -188,8 +185,8 @@ namespace Servicios.Colecciones.Vectoriales
             }
             return varBandera;
         }
-       
-        public bool ajustarFlexibilidad(bool prmFlexible)
+        override
+         public bool ajustarFlexibilidad(bool prmFlexible)
         {
             bool varBandera = false;
             if (this.atrEstadoCapacidad == 0 || this.atrEstadoCapacidad == 3)
@@ -222,23 +219,27 @@ namespace Servicios.Colecciones.Vectoriales
         }
         #endregion
         #region Accesores
+        override
         public int darLongitud()
         {
             return atrLongitud;
         }
+        override
         public Tipo[] darItems()
         {
             return atrItems;
         }
-
+        override
         public int darCapacidad()
         {
             return atrCapacidad;
         }
+        override
         public bool esFlexible()
         {
             return atrFlexible;
         }
+        override
         public int darFactorCrecimiento()
         {
             return atrFactorCrecimiento;
@@ -313,6 +314,7 @@ namespace Servicios.Colecciones.Vectoriales
                 return false;
             }
         }
+        override
         public bool reversar()
         {
             if (this.atrLongitud != 0)

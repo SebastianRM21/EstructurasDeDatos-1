@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Servicios.Colecciones.Interfaces;
+using System;
 
 namespace Servicios.Colecciones.Nodos
 {
-    public class clsNodo<Tipo> where Tipo : IComparable<Tipo>
+    public class clsNodo<Tipo>:iNodo<Tipo> where Tipo : IComparable<Tipo>
     {
         #region Atributos
         protected Tipo atrItem;
@@ -17,9 +18,14 @@ namespace Servicios.Colecciones.Nodos
         #endregion
         #region Mutadores
 
-        public void modificarItem(Tipo prmItem)
+       
+
+        public bool ponerItem(Tipo prmItem)
         {
             this.atrItem = prmItem;
+
+
+            return true;
         }
 
         #endregion

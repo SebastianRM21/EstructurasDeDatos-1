@@ -1,19 +1,13 @@
 ﻿using Servicios.Colecciones.Interfaces;
 using Servicios.Colecciones.Nodos;
+using Servicios.Colecciones.Tads;
 using System;
 
 namespace Servicios.Colecciones.Enlazadas
 {
-    public class clsColaEnlazada<Tipo> : iCola<Tipo> where Tipo : IComparable<Tipo>
+    public class clsColaEnlazada<Tipo> : clsTADEnlazado<Tipo>,iCola<Tipo> where Tipo : IComparable<Tipo>
     {
-        #region Atributos
-        #region Asociativos
-        private clsNodoEnlazado<Tipo> atrPrimero;
-        private clsNodoEnlazado<Tipo> atrUltimo;
-
-        #endregion
-        private int atrLongitud;
-        #endregion
+        
 
 
         #region Constructores
@@ -59,7 +53,7 @@ namespace Servicios.Colecciones.Enlazadas
             if (this.atrLongitud < int.MaxValue / 16)
             {
                 clsNodoEnlazado<Tipo> varNodo = new clsNodoEnlazado<Tipo>();
-                varNodo.modificarItem(prmItem);
+                varNodo.ponerItem(prmItem);
                 if (this.atrLongitud == 0)
                 {
                     this.atrPrimero = varNodo;
@@ -67,7 +61,7 @@ namespace Servicios.Colecciones.Enlazadas
                 }
                 else
                 {
-                    this.atrUltimo.modificarSiguiente(varNodo);
+                    this.atrUltimo.ponerSiguiente(varNodo);
                     this.atrUltimo = varNodo;
                 }
                 this.atrLongitud++;
@@ -94,6 +88,7 @@ namespace Servicios.Colecciones.Enlazadas
         }
         #endregion
         #region Accesores
+        override
 
         public Tipo[] darItems()
         {
@@ -116,36 +111,28 @@ namespace Servicios.Colecciones.Enlazadas
                 return varItems;
             }
         }
-
+        override
         public int darLongitud()
         {
             return this.atrLongitud;
         }
-        public clsNodoEnlazado<Tipo> darPrimero()
-        {
-            return this.atrPrimero;
-        }
-
-        public clsNodoEnlazado<Tipo> darUltimo()
-        {
-            return this.atrUltimo;
-        }
+        
         #endregion
         #region Mutadores
-
+        override
         public bool ponerItems(Tipo[] prmItems)
         {
             if (prmItems.Length != 0 && prmItems.Length <= (int.MaxValue / 16))
             {
                 clsNodoEnlazado<Tipo> nodo = new clsNodoEnlazado<Tipo>();
-                nodo.modificarItem(prmItems[0]);
+                nodo.ponerItem(prmItems[0]);
                 this.atrPrimero = nodo;
                 this.atrLongitud++;
                 for (int indice = 1; indice < prmItems.Length; indice++)
                 {
                     clsNodoEnlazado<Tipo> siguiente = new clsNodoEnlazado<Tipo>();
-                    siguiente.modificarItem(prmItems[indice]);
-                    nodo.modificarSiguiente(siguiente);
+                    siguiente.ponerItem(prmItems[indice]);
+                    nodo.ponerSiguiente(siguiente);
                     nodo = siguiente;
                     this.atrLongitud++;
                 }
@@ -173,7 +160,7 @@ namespace Servicios.Colecciones.Enlazadas
         #endregion
         #region Sorting
 
-
+        override
         public bool reversar()
         {
             if (this.atrLongitud != 0)

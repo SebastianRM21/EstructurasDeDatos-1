@@ -1,17 +1,14 @@
 ﻿using Servicios.Colecciones.Interfaces;
+using Servicios.Colecciones.Tads;
 using System;
 
 namespace Servicios.Colecciones.Vectoriales
 {
-    public class clsListaVector<Tipo> : ILista<Tipo> where Tipo : IComparable<Tipo>
+    public class clsListaVector<Tipo> : clsTADVectorial<Tipo>, ILista<Tipo> where Tipo : IComparable<Tipo>
     {
         #region Atributos
-        private int atrLongitud;
-        private Tipo[] atrItems;
-        private int atrCapacidad;
-        private bool atrFlexible = true;
-        private int atrFactorCrecimiento = 1000;
-        private int atrEstadoCapacidad;
+        
+        
         #endregion
 
         #region Operaciones
@@ -140,6 +137,7 @@ namespace Servicios.Colecciones.Vectoriales
         }
         #endregion
         #region Mutadores
+        override
         public bool ponerItems(Tipo[] prmItems)
         {
             bool varBandera = false;
@@ -164,17 +162,7 @@ namespace Servicios.Colecciones.Vectoriales
             }
             return varBandera;
         }
-        public void ajustarFactorCrecimiento()
-        {
-            if (this.atrFlexible)
-            {
-                this.atrFactorCrecimiento = 1000;
-            }
-            else
-            {
-                this.atrFactorCrecimiento = 0;
-            }
-        }
+        
         public bool ajustarFactorCrecimiento(int prmFactorCrecimiento)
         {
 
@@ -198,25 +186,8 @@ namespace Servicios.Colecciones.Vectoriales
             }
             return varBandera;
         }
-        public void ajustarFlexibilidad()
-        {
-            if (this.atrEstadoCapacidad == 0 || this.atrEstadoCapacidad == 3)
-            {
-                this.atrFlexible = true;
-            }
-            else if (this.atrEstadoCapacidad == 1)
-            {
-                this.atrFlexible = false;
-            }
-            else if (this.atrFactorCrecimiento == 0)
-            {
-                this.atrFlexible = false;
-            }
-            else
-            {
-                this.atrFlexible = true;
-            }
-        }
+        
+        override
         public bool ajustarFlexibilidad(bool prmFlexible)
         {
             bool varBandera = false;
@@ -249,23 +220,28 @@ namespace Servicios.Colecciones.Vectoriales
         }
         #endregion
         #region Accesores
+        override
         public int darLongitud()
         {
             return atrLongitud;
         }
+        override
         public Tipo[] darItems()
         {
             return atrItems;
         }
+        override
 
         public int darCapacidad()
         {
             return atrCapacidad;
         }
+        override
         public bool esFlexible()
         {
             return atrFlexible;
         }
+        override
         public int darFactorCrecimiento()
         {
             return atrFactorCrecimiento;
@@ -351,7 +327,7 @@ namespace Servicios.Colecciones.Vectoriales
             }
         }
 
-        public bool extraer(int prmIndice, ref Tipo prmItem)
+        public bool remover(int prmIndice, ref Tipo prmItem)
         {
             validarCapacidad(this.atrCapacidad);
             ajustarFlexibilidad(true);
@@ -409,6 +385,7 @@ namespace Servicios.Colecciones.Vectoriales
 
         #endregion
         #region QUERY
+        override
         public bool contiene(Tipo prmItem)
         {
             if (this.atrLongitud!=0)
@@ -434,7 +411,7 @@ namespace Servicios.Colecciones.Vectoriales
 
         }
 
-
+        override
         public int encontrar(Tipo prmItem)
         {
             int varIndice = -1;
@@ -460,6 +437,7 @@ namespace Servicios.Colecciones.Vectoriales
 
         #endregion
         #region Reversar
+        override
         public bool reversar()
         {
             if (this.atrLongitud != 0)

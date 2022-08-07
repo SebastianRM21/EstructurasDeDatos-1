@@ -1,18 +1,13 @@
 ﻿using Servicios.Colecciones.Interfaces;
 using Servicios.Colecciones.Nodos;
+using Servicios.Colecciones.Tads;
 using System;
 
 namespace Servicios.Colecciones.Enlazadas
 {
-    public class clsListaEnlazada<Tipo> : ILista<Tipo> where Tipo : IComparable<Tipo>
+    public class clsListaEnlazada<Tipo> : clsTADEnlazado<Tipo>, ILista<Tipo> where Tipo : IComparable<Tipo>
     {
-        #region Atributos
-        #region Asociativos
-        private clsNodoEnlazado<Tipo> atrPrimero;
-        private clsNodoEnlazado<Tipo> atrUltimo;
-        #endregion
-        private int atrLongitud;
-        #endregion
+
         #region Operaciones
         #region Constructores
         #region Constructor NO Parametrizado Por Defecto
@@ -30,7 +25,7 @@ namespace Servicios.Colecciones.Enlazadas
             if (this.atrLongitud < int.MaxValue / 16)
             {
                 clsNodoEnlazado<Tipo> varNodo = new clsNodoEnlazado<Tipo>();
-                varNodo.modificarItem(prmItem);
+                varNodo.ponerItem(prmItem);
                 if (this.atrLongitud == 0)
                 {
                     this.atrPrimero = varNodo;
@@ -38,7 +33,7 @@ namespace Servicios.Colecciones.Enlazadas
                 }
                 else
                 {
-                    this.atrUltimo.modificarSiguiente(varNodo);
+                    this.atrUltimo.ponerSiguiente(varNodo);
                     this.atrUltimo = varNodo;
                 }
                 this.atrLongitud++;
@@ -52,44 +47,44 @@ namespace Servicios.Colecciones.Enlazadas
 
         public bool insertar(int prmIndice, Tipo prmItem)
         {
-            if (prmIndice>=0 && prmIndice<=this.atrLongitud)
+            if (prmIndice >= 0 && prmIndice <= this.atrLongitud)
             {
                 clsNodoEnlazado<Tipo> varNodo = new clsNodoEnlazado<Tipo>();
-                varNodo.modificarItem(prmItem);
-                if (prmIndice==0)
+                varNodo.ponerItem(prmItem);
+                if (prmIndice == 0)
                 {
-                    if (this.atrLongitud==0)
+                    if (this.atrLongitud == 0)
                     {
                         this.atrPrimero = varNodo;
                         this.atrUltimo = varNodo;
                     }
                     else
                     {
-                        varNodo.modificarSiguiente(this.atrPrimero);
+                        varNodo.ponerSiguiente(this.atrPrimero);
                         this.atrPrimero = varNodo;
                     }
-                }else if (prmIndice==this.atrLongitud)
+                } else if (prmIndice == this.atrLongitud)
                 {
-                    this.atrUltimo.modificarSiguiente(varNodo);
+                    this.atrUltimo.ponerSiguiente(varNodo);
                     this.atrUltimo = varNodo;
                 }
                 else
                 {
                     clsNodoEnlazado<Tipo> varNodoTemp = this.atrPrimero;
                     int varIndice = 0;
-                    while (varNodoTemp!=null)
+                    while (varNodoTemp != null)
                     {
 
-                        if (varIndice==prmIndice-1)
+                        if (varIndice == prmIndice - 1)
                         {
-                            varNodo.modificarSiguiente(varNodoTemp.darSiguiente());
-                            varNodoTemp.modificarSiguiente(varNodo);
+                            varNodo.ponerSiguiente(varNodoTemp.darSiguiente());
+                            varNodoTemp.ponerSiguiente(varNodo);
                         }
 
                         varIndice++;
                         varNodoTemp = varNodoTemp.darSiguiente();
                     }
-                    
+
                 }
 
                 this.atrLongitud++;
@@ -103,7 +98,7 @@ namespace Servicios.Colecciones.Enlazadas
 
         }
 
-        public bool extraer(int prmIndice, ref Tipo prmItem)
+        public bool remover(int prmIndice, ref Tipo prmItem)
         {
             if (prmIndice >= 0 && prmIndice < this.atrLongitud && this.atrLongitud != 0)
             {
@@ -130,7 +125,7 @@ namespace Servicios.Colecciones.Enlazadas
                         {
                             if (varIndice == prmIndice - 1)
                             {
-                                varNodoTemp.modificarSiguiente(null);
+                                varNodoTemp.ponerSiguiente(null);
                                 this.atrUltimo = varNodoTemp;
                             }
                             varIndice++;
@@ -147,9 +142,9 @@ namespace Servicios.Colecciones.Enlazadas
                             if (varIndice == prmIndice - 1)
                             {
                                 prmItem = varNodoTemp.darSiguiente().darItem();
-                                varNodoTemp.modificarSiguiente(varNodoTemp.darSiguiente().darSiguiente());
+                                varNodoTemp.ponerSiguiente(varNodoTemp.darSiguiente().darSiguiente());
                             }
-                            
+
                             varIndice++;
                             varNodoTemp = varNodoTemp.darSiguiente();
                         }
@@ -173,9 +168,9 @@ namespace Servicios.Colecciones.Enlazadas
                 int varIndice = 0;
                 while (varNodoTemp != null)
                 {
-                    if (prmIndice==varIndice)
+                    if (prmIndice == varIndice)
                     {
-                        varNodoTemp.modificarItem(prmItem);
+                        varNodoTemp.ponerItem(prmItem);
 
                     }
 
@@ -220,11 +215,11 @@ namespace Servicios.Colecciones.Enlazadas
         }
         #endregion
         #region QUERY
-
+        override
         public int encontrar(Tipo prmItem)
         {
             int varIndice = -1;
-            if (this.atrLongitud!=0)
+            if (this.atrLongitud != 0)
             {
                 clsNodoEnlazado<Tipo> varNodoTemp = this.atrPrimero;
                 int varContador = 0;
@@ -245,13 +240,13 @@ namespace Servicios.Colecciones.Enlazadas
                 return varIndice;
             }
 
-           
+
         }
 
-
+        override
         public bool contiene(Tipo prmItem)
         {
-            bool varBandera=false;
+            bool varBandera = false;
             clsNodoEnlazado<Tipo> varNodoTemp = this.atrPrimero;
             while (varNodoTemp != null)
             {
@@ -267,12 +262,12 @@ namespace Servicios.Colecciones.Enlazadas
 
         #endregion
         #region Accesores
-
+        override
         public int darLongitud()
         {
             return this.atrLongitud;
         }
-
+        override 
         public Tipo[] darItems()
         {
             clsNodoEnlazado<Tipo> varNodo = this.darPrimero();
@@ -294,31 +289,24 @@ namespace Servicios.Colecciones.Enlazadas
                 return varItems;
             }
         }
-        public clsNodoEnlazado<Tipo> darPrimero()
-        {
-            return this.atrPrimero;
-        }
-
-        public clsNodoEnlazado<Tipo> darUltimo()
-        {
-            return this.atrUltimo;
-        }
+        
 
         #endregion
         #region Mutadores
+        override
         public bool ponerItems(Tipo[] prmItems)
         {
             if (prmItems.Length != 0 && prmItems.Length <= (int.MaxValue / 16))
             {
                 clsNodoEnlazado<Tipo> varNodo = new clsNodoEnlazado<Tipo>();
-                varNodo.modificarItem(prmItems[0]);
+                varNodo.ponerItem(prmItems[0]);
                 this.atrPrimero = varNodo;
                 this.atrLongitud++;
                 for (int indice = 1; indice < prmItems.Length; indice++)
                 {
                     clsNodoEnlazado<Tipo> siguiente = new clsNodoEnlazado<Tipo>();
-                    siguiente.modificarItem(prmItems[indice]);
-                    varNodo.modificarSiguiente(siguiente);
+                    siguiente.ponerItem(prmItems[indice]);
+                    varNodo.ponerSiguiente(siguiente);
                     varNodo = siguiente;
                     this.atrLongitud++;
                 }
@@ -332,7 +320,7 @@ namespace Servicios.Colecciones.Enlazadas
         }
         #endregion
         #region Sorting
-
+        override
         public bool reversar()
         {
             if (this.atrLongitud != 0)

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Servicios.Colecciones.Interfaces;
+using System;
 
 namespace Servicios.Colecciones.Nodos
 {
-    public class clsNodoEnlazado<Tipo> : clsNodo<Tipo> where Tipo : IComparable<Tipo>
+    public class clsNodoEnlazado<Tipo> : clsNodo<Tipo>,iNodoEnlazado<Tipo> where Tipo : IComparable<Tipo>
     {
         #region Atributos Propios
         private clsNodoEnlazado<Tipo> atrSiguiente;
@@ -16,9 +17,12 @@ namespace Servicios.Colecciones.Nodos
         }
         #endregion
         #region Mutadores
-        public void modificarSiguiente(clsNodoEnlazado<Tipo> prmSiguiente)
+        
+
+        public bool ponerSiguiente(clsNodoEnlazado<Tipo> prmSiguiente)
         {
             this.atrSiguiente = prmSiguiente;
+            return true;
         }
         #endregion
         #endregion

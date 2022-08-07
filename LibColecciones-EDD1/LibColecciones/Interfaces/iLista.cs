@@ -14,26 +14,23 @@ namespace Servicios.Colecciones.Interfaces
 
         bool insertar(int prmIndice, Tipo prmItem);
 
-        bool extraer(int prmIndice, ref Tipo prmItem);
+        bool remover(int prmIndice, ref Tipo prmItem);
 
         bool modificar(int prmIndice, Tipo prmItem);
 
         bool recuperar(int prmIndice, ref Tipo prmItem);
         #endregion
         #region QUERY
-        int encontrar(Tipo prmItem);
-        bool contiene(Tipo prmItem);
+       
         #endregion
         #region Accesor
-        int darLongitud();
-        Tipo[] darItems();
+      
 
         #endregion
         #region sorting
-        bool reversar();
+
         #endregion
         #region Mutadores
-        bool ponerItems(Tipo[] prmItems);
 
         #endregion
         #endregion

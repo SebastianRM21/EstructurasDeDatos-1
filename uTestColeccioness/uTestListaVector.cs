@@ -1596,7 +1596,7 @@ namespace uTestDemoColecciones
             testItems = new int[0];
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(-1, ref testItem));
+            Assert.AreEqual(false, testLista.remover(-1, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(0, testLista.darLongitud());
             Assert.AreEqual(0, testLista.darCapacidad());
@@ -1615,7 +1615,7 @@ namespace uTestDemoColecciones
             testItems = new int[5]; //Fixed
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(-1, ref testItem));
+            Assert.AreEqual(false, testLista.remover(-1, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(0, testLista.darLongitud());
             Assert.AreEqual(5, testLista.darCapacidad()); //Fixed
@@ -1634,7 +1634,7 @@ namespace uTestDemoColecciones
             testLista.ponerItems(testItems);
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(-1, ref testItem));
+            Assert.AreEqual(false, testLista.remover(-1, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(3, testLista.darLongitud());
             Assert.AreEqual(3, testLista.darCapacidad());
@@ -1654,7 +1654,7 @@ namespace uTestDemoColecciones
             testLista.ajustarFlexibilidad(false);
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(-1, ref testItem));
+            Assert.AreEqual(false, testLista.remover(-1, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(3, testLista.darLongitud());
             Assert.AreEqual(3, testLista.darCapacidad());
@@ -1678,7 +1678,7 @@ namespace uTestDemoColecciones
             testItems[2] = 3;
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(-1, ref testItem));
+            Assert.AreEqual(false, testLista.remover(-1, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(3, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());
@@ -1703,7 +1703,7 @@ namespace uTestDemoColecciones
             testLista.ajustarFlexibilidad(false);
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(-1, ref testItem));
+            Assert.AreEqual(false, testLista.remover(-1, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(3, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());
@@ -1723,7 +1723,7 @@ namespace uTestDemoColecciones
             testItems = new int[1000];
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(0, ref testItem));
+            Assert.AreEqual(false, testLista.remover(0, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(0, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());
@@ -1742,7 +1742,7 @@ namespace uTestDemoColecciones
             testItems = new int[1000];
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(0, ref testItem));
+            Assert.AreEqual(false, testLista.remover(0, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(0, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());
@@ -1762,7 +1762,7 @@ namespace uTestDemoColecciones
             testItems = new int[3] { 2, 3, 3 };
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(true, testLista.extraer(0, ref testItem));
+            Assert.AreEqual(true, testLista.remover(0, ref testItem));
             Assert.AreEqual(1, testItem);
             Assert.AreEqual(2, testLista.darLongitud());
             Assert.AreEqual(3, testLista.darCapacidad());
@@ -1783,7 +1783,7 @@ namespace uTestDemoColecciones
             testItems = new int[3] { 2, 3, 3 };
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(true, testLista.extraer(0, ref testItem));
+            Assert.AreEqual(true, testLista.remover(0, ref testItem));
             Assert.AreEqual(1, testItem);
             Assert.AreEqual(2, testLista.darLongitud());
             Assert.AreEqual(3, testLista.darCapacidad());
@@ -1807,7 +1807,7 @@ namespace uTestDemoColecciones
             testItems[2] = 3;
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(true, testLista.extraer(0, ref testItem));
+            Assert.AreEqual(true, testLista.remover(0, ref testItem));
             Assert.AreEqual(1, testItem);
             Assert.AreEqual(2, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());
@@ -1832,7 +1832,7 @@ namespace uTestDemoColecciones
             testItems[2] = 3;
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(true, testLista.extraer(0, ref testItem));
+            Assert.AreEqual(true, testLista.remover(0, ref testItem));
             Assert.AreEqual(1, testItem);
             Assert.AreEqual(2, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());
@@ -1852,7 +1852,7 @@ namespace uTestDemoColecciones
             testItems = new int[1000];
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(2, ref testItem));
+            Assert.AreEqual(false, testLista.remover(2, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(0, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());
@@ -1871,7 +1871,7 @@ namespace uTestDemoColecciones
             testItems = new int[1000];
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(2, ref testItem));
+            Assert.AreEqual(false, testLista.remover(2, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(0, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());
@@ -1891,7 +1891,7 @@ namespace uTestDemoColecciones
             testItems = new int[3] { 1, 2, 3 };
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(true, testLista.extraer(2, ref testItem));
+            Assert.AreEqual(true, testLista.remover(2, ref testItem));
             Assert.AreEqual(3, testItem);
             Assert.AreEqual(2, testLista.darLongitud());
             Assert.AreEqual(3, testLista.darCapacidad());
@@ -1912,7 +1912,7 @@ namespace uTestDemoColecciones
             testItems = new int[3] { 1, 2, 3 };
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(true, testLista.extraer(2, ref testItem));
+            Assert.AreEqual(true, testLista.remover(2, ref testItem));
             Assert.AreEqual(3, testItem);
             Assert.AreEqual(2, testLista.darLongitud());
             Assert.AreEqual(3, testLista.darCapacidad());
@@ -1936,7 +1936,7 @@ namespace uTestDemoColecciones
             testItems[2] = 3;
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(true, testLista.extraer(2, ref testItem));
+            Assert.AreEqual(true, testLista.remover(2, ref testItem));
             Assert.AreEqual(3, testItem);
             Assert.AreEqual(2, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());
@@ -1961,7 +1961,7 @@ namespace uTestDemoColecciones
             testLista.ajustarFlexibilidad(false);
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(true, testLista.extraer(2, ref testItem));
+            Assert.AreEqual(true, testLista.remover(2, ref testItem));
             Assert.AreEqual(3, testItem);
             Assert.AreEqual(2, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());
@@ -1981,7 +1981,7 @@ namespace uTestDemoColecciones
             testItems = new int[0];
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(0, ref testItem));
+            Assert.AreEqual(false, testLista.remover(0, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(0, testLista.darLongitud());
             Assert.AreEqual(0, testLista.darCapacidad());
@@ -2000,7 +2000,7 @@ namespace uTestDemoColecciones
             testItems = new int[1000];
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(0, ref testItem));
+            Assert.AreEqual(false, testLista.remover(0, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(0, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());
@@ -2020,7 +2020,7 @@ namespace uTestDemoColecciones
             testItems = new int[3] { 1, 2, 3 };
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(3, ref testItem));
+            Assert.AreEqual(false, testLista.remover(3, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(3, testLista.darLongitud());
             Assert.AreEqual(3, testLista.darCapacidad());
@@ -2040,7 +2040,7 @@ namespace uTestDemoColecciones
             testLista.ajustarFlexibilidad(false);
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(3, ref testItem));
+            Assert.AreEqual(false, testLista.remover(3, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(3, testLista.darLongitud());
             Assert.AreEqual(3, testLista.darCapacidad());
@@ -2064,7 +2064,7 @@ namespace uTestDemoColecciones
             testItems[2] = 3;
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(3, ref testItem));
+            Assert.AreEqual(false, testLista.remover(3, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(3, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());
@@ -2089,7 +2089,7 @@ namespace uTestDemoColecciones
             testLista.ajustarFlexibilidad(false);
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(3, ref testItem));
+            Assert.AreEqual(false, testLista.remover(3, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(3, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());
@@ -2109,7 +2109,7 @@ namespace uTestDemoColecciones
             testItems = new int[0];
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(4, ref testItem));
+            Assert.AreEqual(false, testLista.remover(4, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(0, testLista.darLongitud());
             Assert.AreEqual(0, testLista.darCapacidad());
@@ -2128,7 +2128,7 @@ namespace uTestDemoColecciones
             testItems = new int[1000];
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(4, ref testItem));
+            Assert.AreEqual(false, testLista.remover(4, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(0, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());
@@ -2147,7 +2147,7 @@ namespace uTestDemoColecciones
             testLista.ponerItems(testItems);
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(4, ref testItem));
+            Assert.AreEqual(false, testLista.remover(4, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(3, testLista.darLongitud());
             Assert.AreEqual(3, testLista.darCapacidad());
@@ -2167,7 +2167,7 @@ namespace uTestDemoColecciones
             testLista.ajustarFlexibilidad(false);
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(4, ref testItem));
+            Assert.AreEqual(false, testLista.remover(4, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(3, testLista.darLongitud());
             Assert.AreEqual(3, testLista.darCapacidad());
@@ -2191,7 +2191,7 @@ namespace uTestDemoColecciones
             testItems[2] = 3;
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(4, ref testItem));
+            Assert.AreEqual(false, testLista.remover(4, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(3, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());
@@ -2216,7 +2216,7 @@ namespace uTestDemoColecciones
             testLista.ajustarFlexibilidad(false);
             #endregion
             #region Probar y Comprobar
-            Assert.AreEqual(false, testLista.extraer(4, ref testItem));
+            Assert.AreEqual(false, testLista.remover(4, ref testItem));
             Assert.AreEqual(default(int), testItem);
             Assert.AreEqual(3, testLista.darLongitud());
             Assert.AreEqual(1000, testLista.darCapacidad());

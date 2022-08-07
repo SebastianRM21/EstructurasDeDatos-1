@@ -19,20 +19,12 @@ namespace Servicios.Colecciones.Interfaces
 
         #endregion
         #region Accesor
-        int darLongitud();
-        Tipo[] darItems();
-
         #endregion
         #region Mutadores
-        bool ponerItems(Tipo[] prmItems);
-
         #endregion
         #region QUERY
-        bool encontrarA(Tipo prmItem, int prmIndice);
-        bool contieneA(Tipo prmItem);
         #endregion
         #region sorting
-        bool reversar();
         #endregion
         #endregion    
     }
