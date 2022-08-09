@@ -58,7 +58,7 @@ namespace uTestDemoColecciones
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
         }
-        /*
+        
         [TestMethod]
         public void uTestPonerItemsConLongitudEnBorde()
         {
@@ -72,7 +72,7 @@ namespace uTestDemoColecciones
             Assert.AreEqual(int.MaxValue / 16, testTAD.darItems().Length);
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
-        }*/
+        }
         [TestMethod]
         public void uTestPonerItemsConLongitudMasAllaDelBorde()
         {
@@ -156,7 +156,7 @@ namespace uTestDemoColecciones
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
         }
-        /*
+        
         [TestMethod]
         public void uTestApilarItemEnTADConItemsEnBorde()
         {
@@ -171,7 +171,7 @@ namespace uTestDemoColecciones
             Assert.AreEqual(int.MaxValue / 16, testTAD.darItems().Length);
             CollectionAssert.AreEqual(testItems, testTAD.darItems());
             #endregion
-        }*/
+        }
         #endregion
         #region Desapilar
         [TestMethod]
