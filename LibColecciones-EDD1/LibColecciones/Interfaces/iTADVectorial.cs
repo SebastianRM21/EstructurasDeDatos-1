@@ -12,7 +12,7 @@ namespace Servicios.Colecciones.Interfaces
         #endregion
         #region Mutadores
         bool ponerCapacidad(int prmValor);
-        bool ponerFactorCrecimiento(int prmValor);
+        bool ajustarFactorCrecimiento(int prmValor);
         bool ajustarFlexibilidad(bool prmValor);
 
         #endregion

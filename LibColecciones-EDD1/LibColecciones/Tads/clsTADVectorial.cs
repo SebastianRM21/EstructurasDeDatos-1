@@ -13,36 +13,457 @@ namespace Servicios.Colecciones.Tads
         protected int atrEstadoCapacidad;
         #endregion
 
-
-
-        public virtual bool ajustarFlexibilidad(bool prmValor)
+        #region Operacciones
+        #region Accesores
+        public int darCapacidad()
         {
-            throw new NotImplementedException();
+            return atrCapacidad;
         }
 
-        public virtual int darCapacidad()
+        public int darFactorCrecimiento()
         {
-            throw new NotImplementedException();
+            return atrFactorCrecimiento;
+        }
+        
+        public override Tipo[] darItems()
+        {
+            return atrItems;
         }
 
-        public virtual int darFactorCrecimiento()
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
+        #region Mutadores
+        
 
-        public virtual bool esFlexible()
+        public override bool ponerItems(Tipo[] prmItems)
         {
-            throw new NotImplementedException();
+            bool varBandera = false;
+
+            if (validarCapacidad(prmItems.Length))
+            {
+                this.atrItems = prmItems;
+                this.atrCapacidad = prmItems.Length;
+                this.atrLongitud = prmItems.Length;
+                ajustarFlexibilidad(true);
+
+                varBandera = true;
+            }
+            else
+            {
+                this.atrCapacidad = 0;
+                this.atrLongitud = 0;
+                this.atrItems = new Tipo[this.atrCapacidad];
+                ajustarFlexibilidad(true);
+
+                varBandera = false;
+            }
+
+
+            return varBandera;
         }
 
         public virtual bool ponerCapacidad(int prmValor)
         {
             throw new NotImplementedException();
         }
-
-        public virtual bool ponerFactorCrecimiento(int prmValor)
+        public void aumentarCapacidad()
         {
-            throw new NotImplementedException();
+            this.atrCapacidad = this.atrItems.Length + this.atrFactorCrecimiento;
+            Array.Resize(ref this.atrItems, this.atrCapacidad);
+
         }
+
+        public bool ajustarFactorCrecimiento(int prmFactorCrecimiento)
+        {
+
+            bool varBandera = false;
+            if (this.atrFlexible)
+            {
+                if (prmFactorCrecimiento == 0)
+                {
+                    this.atrFactorCrecimiento = 1000;
+                }
+                else
+                {
+                    this.atrFactorCrecimiento = prmFactorCrecimiento;
+                    varBandera = true;
+                }
+
+            }
+            else
+            {
+                this.atrFactorCrecimiento = 0;
+            }
+            return varBandera;
+        }
+        public bool ajustarFlexibilidad(bool prmFlexible)
+        {
+            bool varBandera = false;
+            if (this.atrEstadoCapacidad == 0 || this.atrEstadoCapacidad == 3)
+            {
+                this.atrFlexible = true;
+
+            }
+            else if (this.atrEstadoCapacidad == 1)
+            {
+                this.atrFlexible = false;
+
+            }
+            else if (this.atrFactorCrecimiento == 0)
+            {
+                this.atrFlexible = false;
+            }
+            else
+            {
+                this.atrFlexible = prmFlexible;
+                varBandera = true;
+            }
+            ajustarFactorCrecimiento(1000);
+            return varBandera;
+        }
+        #endregion
+        #region Query
+        public  bool esFlexible()
+        {
+            return atrFlexible;
+        }
+        public override bool contiene(Tipo prmItem)
+        {
+            if (this.atrLongitud != 0)
+            {
+
+                for (int i = 0; i < this.atrLongitud; i++)
+                {
+                    if (this.atrItems[i].Equals(prmItem))
+                    {
+                        return true;
+
+                    }
+
+                }
+
+                return false;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
+        #region Sorting
+        public override bool reversar()
+        {
+            if (this.atrLongitud != 0)
+            {
+                Tipo[] varTempItems = new Tipo[this.atrCapacidad];
+                for (int indice = 0; indice < this.atrLongitud; indice++)
+                {
+                    varTempItems[indice] = this.atrItems[(this.atrLongitud - 1) - indice];
+                }
+
+                this.atrItems = varTempItems;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
+        #region Validadores
+        public bool validarCapacidad(int prmCapacidad)
+        {
+
+            if (prmCapacidad >= 0 && prmCapacidad <= (int.MaxValue / 16))
+            {
+                if (prmCapacidad == 0)
+                {
+                    this.atrEstadoCapacidad = 0;
+                }
+                else if (prmCapacidad == (int.MaxValue / 16))
+                {
+                    this.atrEstadoCapacidad = 1;
+                }
+                else
+                {
+                    this.atrEstadoCapacidad = 2;
+                }
+
+                return true;
+            }
+            else
+            {
+                this.atrEstadoCapacidad = 3;
+                return false;
+            }
+        }
+
+
+
+        public bool validarFactorCrecimiento(int prmFactorCrecimiento)
+        {
+            if (prmFactorCrecimiento >= 0 && prmFactorCrecimiento <= (int.MaxValue / 16))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+        #region CRUDS
+        #region Insercion
+        protected override bool insertarPrimero(Tipo prmItem)
+        {
+            validarCapacidad(this.atrCapacidad);
+            ajustarFlexibilidad(true);
+
+            if (this.atrCapacidad == 0 || this.atrLongitud == this.atrCapacidad)
+            {
+                if (this.atrFlexible)
+                {
+                    aumentarCapacidad();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            if (this.atrLongitud == 0)
+            {
+                this.atrItems[0] = prmItem;
+
+            }
+            else
+            {
+                for (int indice = this.atrLongitud; indice > 0; indice--)
+                {
+                    this.atrItems[indice] = this.atrItems[indice - 1];
+
+                }
+                this.atrItems[0] = prmItem;
+            }
+
+            this.atrLongitud++;
+
+            return true;
+        }
+
+        protected override bool insertarUltimo(Tipo prmItem)
+        {
+            validarCapacidad(this.atrCapacidad);
+            ajustarFlexibilidad(true);
+
+
+            if (this.atrCapacidad == 0 || this.atrLongitud == this.atrCapacidad)
+            {
+                if (this.atrFlexible)
+                {
+                    aumentarCapacidad();
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+
+            if (this.atrLongitud == 0)
+            {
+                this.atrItems[0] = prmItem;
+            }
+            else
+            {
+                this.atrItems[atrLongitud] = prmItem;
+            }
+
+            this.atrLongitud++;
+            return true;
+
+        }
+
+        protected override bool insertarEnMedio(int prmIndice, Tipo prmItem)
+        {
+            validarCapacidad(this.atrCapacidad);
+            ajustarFlexibilidad(true);
+
+
+            if (prmIndice >= 0 && prmIndice <= this.atrLongitud)
+            {
+                if (this.atrCapacidad == 0 || this.atrLongitud == this.atrCapacidad)
+                {
+                    if (this.atrFlexible)
+                    {
+                        aumentarCapacidad();
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+
+                if (this.atrLongitud == 0)
+                {
+                    this.atrItems[0] = prmItem;
+                }
+                else
+                {
+                    for (int indice = this.atrLongitud; indice > prmIndice; indice--)
+                    {
+                        this.atrItems[indice] = this.atrItems[indice - 1];
+
+                    }
+                    this.atrItems[prmIndice] = prmItem;
+                }
+
+                this.atrLongitud++;
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
+        #region Extraccion
+        protected override bool extraerPrimero(ref Tipo prmItem)
+        {
+            if (this.atrLongitud != 0)
+            {
+                prmItem = this.atrItems[0];
+                for (int i = 0; i < this.atrLongitud - 1; i++)
+                {
+                    this.atrItems[i] = this.atrItems[i + 1];
+                }
+                this.atrLongitud--;
+
+                return true;
+            }
+            else
+            {
+                prmItem = default(Tipo);
+                return false;
+            }
+        }
+
+        protected override bool extraerUltimo(ref Tipo prmItem)
+        {
+            if ((atrLongitud - 1) >= 0 && (atrLongitud - 1) < this.atrLongitud)
+            {
+                prmItem = this.atrItems[(atrLongitud - 1)];
+                
+                this.atrLongitud--;
+                return true;
+            }
+            else
+            {
+                prmItem = default(Tipo);
+                return false;
+            }
+        }
+        protected override bool extraerEnMedio(int prmIndice, ref Tipo prmItem)
+        {
+            validarCapacidad(this.atrCapacidad);
+            ajustarFlexibilidad(true);
+
+
+            if (prmIndice >= 0 && prmIndice < this.atrLongitud)
+            {
+                if (this.atrLongitud == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    prmItem = this.atrItems[prmIndice];
+                    for (int i = prmIndice; i < this.atrLongitud - 1; i++)
+                    {
+                        this.atrItems[i] = this.atrItems[i + 1];
+
+                    }
+                    this.atrLongitud--;
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        } 
+        #endregion
+        #endregion
+        #region Patron Iterador
+        #region Operaciones
+        #region Mutadores
+        public override void ponerItemActual(Tipo prmItem)
+        {
+            atrItems[atrIndiceActual] = prmItem; 
+        }
+        #endregion
+        #region Posicionadores
+        public override bool irPrimero()
+        {
+            if (!estaVacia())
+            {
+                atrIndiceActual = 0;
+                atrItemActual = atrItems[atrIndiceActual];
+                return true;
+            }
+            atrItemActual = default(Tipo);
+            atrIndiceActual = -1;
+            return false;
+        }
+        public override bool irUltimo()
+        {
+            if (!estaVacia())
+            {
+                atrIndiceActual = atrLongitud-1;
+                atrItemActual = atrItems[atrIndiceActual];
+                return true;
+            }
+            atrItemActual = default(Tipo);
+            atrIndiceActual = -1;
+            return false;
+        }
+        protected override bool avanzarItem()
+        {
+            atrIndiceActual++;
+            atrItemActual = atrItems [atrIndiceActual];
+            return true;
+        }
+        protected override bool retrocederItem()
+        {
+            atrIndiceActual--;
+            atrItemActual = atrItems[atrIndiceActual];
+            return true;
+        }
+        public override bool irIndice(int prmIndice)
+        {
+
+            if (esValido(prmIndice))
+            {
+                atrIndiceActual = prmIndice;
+                atrItemActual = atrItems[atrIndiceActual];
+                return true;
+            }
+            return false;
+
+        }
+        #endregion
+        #endregion
+        #endregion
+        #endregion
+
+
+
+
+
+
+
+
     }
 }

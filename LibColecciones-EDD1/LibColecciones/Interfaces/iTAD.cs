@@ -27,6 +27,9 @@ namespace Servicios.Colecciones.Interfaces
         #region CRUD
         bool limpiar();
         #endregion
+        #region Consultores
+        bool estaVacia();
+        #endregion
 
     }
 }

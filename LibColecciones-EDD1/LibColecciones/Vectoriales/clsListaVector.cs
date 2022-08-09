@@ -6,10 +6,7 @@ namespace Servicios.Colecciones.Vectoriales
 {
     public class clsListaVector<Tipo> : clsTADVectorial<Tipo>, ILista<Tipo> where Tipo : IComparable<Tipo>
     {
-        #region Atributos
         
-        
-        #endregion
 
         #region Operaciones
         #region Constructores
@@ -95,368 +92,36 @@ namespace Servicios.Colecciones.Vectoriales
         }
         #endregion
         #endregion
-        #region Validadores
-        public bool validarCapacidad(int prmCapacidad)
-        {
-
-            if (prmCapacidad >= 0 && prmCapacidad <= (int.MaxValue / 16))
-            {
-
-                if (prmCapacidad == 0)
-                {
-                    this.atrEstadoCapacidad = 0;
-                }
-                else if (prmCapacidad == (int.MaxValue / 16))
-                {
-                    this.atrEstadoCapacidad = 1;
-                }
-                else
-                {
-                    this.atrEstadoCapacidad = 2;
-                }
-
-                return true;
-            }
-            else
-            {
-                this.atrEstadoCapacidad = 3;
-                return false;
-
-            }
-        }
-        public bool validarFactorCrecimiento(int prmFactorCrecimiento)
-        {
-            if (prmFactorCrecimiento >= 0 && prmFactorCrecimiento <= (int.MaxValue / 16))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        #endregion
-        #region Mutadores
-        override
-        public bool ponerItems(Tipo[] prmItems)
-        {
-            bool varBandera = false;
-
-            if (validarCapacidad(prmItems.Length))
-            {
-                this.atrItems = prmItems;
-                this.atrCapacidad = prmItems.Length;
-                this.atrLongitud = prmItems.Length;
-                ajustarFlexibilidad(true);
-                
-                varBandera = true;
-            }
-            else
-            {
-                this.atrCapacidad = 0;
-                this.atrLongitud = 0;
-                this.atrItems = new Tipo[this.atrCapacidad];
-                ajustarFlexibilidad(true);
-                
-                varBandera = false;
-            }
-            return varBandera;
-        }
         
-        public bool ajustarFactorCrecimiento(int prmFactorCrecimiento)
-        {
-
-            bool varBandera = false;
-            if (this.atrFlexible)
-            {
-                if (prmFactorCrecimiento == 0)
-                {
-                    this.atrFactorCrecimiento = 1000;
-                }
-                else
-                {
-                    this.atrFactorCrecimiento = prmFactorCrecimiento;
-                    varBandera = true;
-                }
-
-            }
-            else
-            {
-                this.atrFactorCrecimiento = 0;
-            }
-            return varBandera;
-        }
-        
-        override
-        public bool ajustarFlexibilidad(bool prmFlexible)
-        {
-            bool varBandera = false;
-            if (this.atrEstadoCapacidad == 0 || this.atrEstadoCapacidad == 3)
-            {
-                this.atrFlexible = true;
-
-            }
-            else if (this.atrEstadoCapacidad == 1)
-            {
-                this.atrFlexible = false;
-
-            }
-            else if (this.atrFactorCrecimiento == 0)
-            {
-                this.atrFlexible = false;
-            }
-            else
-            {
-                this.atrFlexible = prmFlexible;
-                varBandera = true;
-            }
-            ajustarFactorCrecimiento(1000);
-            return varBandera;
-        }
-        public void aumentarCapacidad()
-        {
-            this.atrCapacidad = this.atrItems.Length + this.atrFactorCrecimiento;
-            Array.Resize(ref this.atrItems, this.atrCapacidad);
-        }
-        #endregion
-        #region Accesores
-        override
-        public int darLongitud()
-        {
-            return atrLongitud;
-        }
-        override
-        public Tipo[] darItems()
-        {
-            return atrItems;
-        }
-        override
-
-        public int darCapacidad()
-        {
-            return atrCapacidad;
-        }
-        override
-        public bool esFlexible()
-        {
-            return atrFlexible;
-        }
-        override
-        public int darFactorCrecimiento()
-        {
-            return atrFactorCrecimiento;
-        }
-
-        #endregion
         #region CRUD
         public bool agregar(Tipo prmItem)
         {
-            validarCapacidad(this.atrCapacidad);
-            ajustarFlexibilidad(true);
-            
-
-            if (this.atrCapacidad == 0 || this.atrLongitud == this.atrCapacidad)
-            {
-                if (this.atrFlexible)
-                {
-                    aumentarCapacidad();
-                }
-                else
-                {
-                    return false;
-                }
-
-            }
-
-            if (this.atrLongitud == 0)
-            {
-                this.atrItems[0] = prmItem;
-            }
-            else
-            {
-                this.atrItems[atrLongitud] = prmItem;
-            }
-
-            this.atrLongitud++;
-            return true;
-
+            return insertarUltimo(prmItem);
         }
 
         public bool insertar(int prmIndice, Tipo prmItem)
         {
-            validarCapacidad(this.atrCapacidad);
-            ajustarFlexibilidad(true);
-          
-
-            if (prmIndice >= 0 && prmIndice <= this.atrLongitud)
-            {
-                if (this.atrCapacidad == 0 || this.atrLongitud == this.atrCapacidad)
-                {
-                    if (this.atrFlexible)
-                    {
-                        aumentarCapacidad();
-                    }
-                    else
-                    {
-                        return false;
-                    }
-
-                }
-
-                if (this.atrLongitud == 0)
-                {
-                    this.atrItems[0] = prmItem;
-                }
-                else
-                {
-                    for (int indice = this.atrLongitud; indice > prmIndice; indice--)
-                    {
-                        this.atrItems[indice] = this.atrItems[indice - 1];
-
-                    }
-                    this.atrItems[prmIndice] = prmItem;
-                }
-
-                this.atrLongitud++;
-                return true;
-
-            }
-            else
-            {
-                return false;
-            }
+            return insertarEn(prmIndice,prmItem);
         }
 
         public bool remover(int prmIndice, ref Tipo prmItem)
         {
-            validarCapacidad(this.atrCapacidad);
-            ajustarFlexibilidad(true);
-         
-
-            if (prmIndice >= 0 && prmIndice < this.atrLongitud)
-            {
-                if (this.atrLongitud==0)
-                {
-                    return false;
-                }
-                else
-                {
-                    prmItem = this.atrItems[prmIndice];
-                    for (int i=prmIndice;i<this.atrLongitud-1;i++)
-                    {
-                        this.atrItems[i] = this.atrItems[i + 1];
-
-                    }
-                    this.atrLongitud--;
-                    return true;
-                }
-            }
-            else
-            {
-                return false;
-            }
+            return extraerEn(prmIndice, ref prmItem);
         }
 
         public bool modificar(int prmIndice, Tipo prmItem)
         {
-            if (prmIndice >= 0 && prmIndice < this.atrLongitud)
-            {
-                this.atrItems[prmIndice] = prmItem;
-                return true;   
-            }
-            else
-            {
-                return false;
-            }
+            return modificarEn(prmIndice,prmItem);
         }
 
         public bool recuperar(int prmIndice, ref Tipo prmItem)
         {
-            if (prmIndice>=0 && prmIndice<this.atrLongitud)
-            {
-                prmItem = this.atrItems[prmIndice];
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return recuperarEn(prmIndice, ref prmItem);
         }
 
         #endregion
-        #region QUERY
-        override
-        public bool contiene(Tipo prmItem)
-        {
-            if (this.atrLongitud!=0)
-            {
-
-                for (int i=0;i<this.atrLongitud;i++)
-                {
-                    if (this.atrItems[i].Equals(prmItem))
-                    {
-                        return true;
-
-                    }
-
-                }
-
-                return false;
-               
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-
-        override
-        public int encontrar(Tipo prmItem)
-        {
-            int varIndice = -1;
-            if (this.atrLongitud!=0)
-            {
-                for (int i = 0; i < this.atrLongitud; i++)
-                {
-                    if (this.atrItems[i].Equals(prmItem))
-                    {
-                        varIndice = i;
-                        return varIndice;
-
-                    }
-                }
-                return varIndice;
-            }
-            else
-            {
-                return varIndice;
-
-            }
-        }
-
-        #endregion
-        #region Reversar
-        override
-        public bool reversar()
-        {
-            if (this.atrLongitud != 0)
-            {
-                Tipo[] varTempItems = new Tipo[this.atrCapacidad];
-                for (int indice = 0; indice < this.atrLongitud; indice++)
-                {
-                    varTempItems[indice] = this.atrItems[(this.atrLongitud - 1) - indice];
-                }
-
-                this.atrItems = varTempItems;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        #endregion
+        
+      
         #endregion
     }
 }

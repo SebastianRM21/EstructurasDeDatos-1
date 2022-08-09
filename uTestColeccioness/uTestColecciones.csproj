@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="uTestOrdenamiento.cs" />
     <Compile Include="uTestListaDobleEnlazada.cs" />
     <Compile Include="uTestColaDobleEnlazada.cs" />
     <Compile Include="uTestPilaDobleEnlazada.cs" />
